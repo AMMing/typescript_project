@@ -1,4 +1,14 @@
-﻿module AMing.Core {
+﻿// ==UserScript==
+// @name         海色追加脚本
+// @namespace    http://kancolle.aemedia.org/appendjs/By/AMing
+// @version      1.0
+// @description  海色追加脚本
+// @author       AMing
+// @match        http://kancolle.aemedia.org/*
+// @grant        none
+// ==/UserScript==
+
+module AMing.Core {
 	/**
 	 * 常用方法类
 	 * verison:1.1
@@ -113,48 +123,59 @@ module SeaColor {
      * 追加引用
      */
     export class Append {
+        is_debug: boolean = true;
         /**
          * 通用的js目录路径
          */
-        js_path: string = '/template/999test_cn_img/dz_model_15020401/extend/js/';
+        path: string = '/template/SeaColor/';
+        hostname: string = 'http://amoe.me';
+        getFileUrl(name: string): string {
+            var url = this.path + name;
+            if (this.is_debug) {
+                url = this.hostname + url + '?v=' + (new Date()).getUTCMilliseconds();
+            }
+
+            return url;
+        }
         /**
          * 引用js文件
          * @param name 文件名
          */
         Js(name: string): void {
-            AMing.Core.Helper.append_js(this.js_path + name + '.js');
+            AMing.Core.Helper.append_js(this.getFileUrl('js/' + name + '.js'));
         }
         /**
          * 引用min.js文件
          * @param name 文件名
          */
         JsMini(name: string): void {
-            this.Js(name + '.min');
+            this.Js(name + (this.is_debug ? '' : '.min'));
         }
         /**
          * 引用css文件
          * @param name 文件名
          */
         Css(name: string): void {
-            AMing.Core.Helper.append_css(this.js_path + name + '.js');
+            AMing.Core.Helper.append_css(this.getFileUrl('css/' + name + '.css'));
         }
         /**
          * 引用min.css文件
          * @param name 文件名
          */
         CssMini(name: string): void {
-            this.Css(name + '.min');
+            this.Css(name + (this.is_debug ? '' : '.min'));
         }
         /**
          * 初始化
          */
         init(): void {
+            this.CssMini('append');
             var now_url = window.location.href;
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }
             if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
-                this.JsMini('kaomoji');
+                this.JsMini('medal');
             }
         }
     }

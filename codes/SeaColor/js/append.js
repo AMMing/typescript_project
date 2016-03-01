@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name         海色追加脚本
+// @namespace    http://kancolle.aemedia.org/appendjs/By/AMing
+// @version      1.0
+// @description  海色追加脚本
+// @author       AMing
+// @match        http://kancolle.aemedia.org/*
+// @grant        none
+// ==/UserScript==
 var AMing;
 (function (AMing) {
     var Core;
@@ -123,7 +132,7 @@ var AMing;
             };
             Helper.jq_url = 'http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js';
             return Helper;
-        }());
+        })();
         Core.Helper = Helper;
     })(Core = AMing.Core || (AMing.Core = {}));
 })(AMing || (AMing = {}));
@@ -134,53 +143,63 @@ var SeaColor;
      */
     var Append = (function () {
         function Append() {
+            this.is_debug = true;
             /**
              * 通用的js目录路径
              */
-            this.js_path = '/template/999test_cn_img/dz_model_15020401/extend/js/';
+            this.path = '/template/SeaColor/';
+            this.hostname = 'http://amoe.me';
         }
+        Append.prototype.getFileUrl = function (name) {
+            var url = this.path + name;
+            if (this.is_debug) {
+                url = this.hostname + url + '?v=' + (new Date()).getUTCMilliseconds();
+            }
+            return url;
+        };
         /**
          * 引用js文件
          * @param name 文件名
          */
         Append.prototype.Js = function (name) {
-            AMing.Core.Helper.append_js(this.js_path + name + '.js');
+            AMing.Core.Helper.append_js(this.getFileUrl('js/' + name + '.js'));
         };
         /**
          * 引用min.js文件
          * @param name 文件名
          */
         Append.prototype.JsMini = function (name) {
-            this.Js(name + '.min');
+            this.Js(name + (this.is_debug ? '' : '.min'));
         };
         /**
          * 引用css文件
          * @param name 文件名
          */
         Append.prototype.Css = function (name) {
-            AMing.Core.Helper.append_css(this.js_path + name + '.js');
+            AMing.Core.Helper.append_css(this.getFileUrl('css/' + name + '.css'));
         };
         /**
          * 引用min.css文件
          * @param name 文件名
          */
         Append.prototype.CssMini = function (name) {
-            this.Css(name + '.min');
+            this.Css(name + (this.is_debug ? '' : '.min'));
         };
         /**
          * 初始化
          */
         Append.prototype.init = function () {
+            this.CssMini('append');
             var now_url = window.location.href;
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
             }
             if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {
-                this.JsMini('kaomoji');
+                this.JsMini('medal');
             }
         };
         return Append;
-    }());
+    })();
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Append()).init();
