@@ -89,10 +89,6 @@ module SeaColor {
          */
         isCate(cate: MedalCate, $obj: JQuery): boolean {
             var des = $obj.find('.tip_c p:first-child').text();
-            console.log(des);
-            console.log(cate.key);
-            console.log(des.indexOf(cate.key) >= 0);
-            console.log('\n\n');
             return des.indexOf(cate.key) >= 0;
         }
         /**
@@ -165,10 +161,7 @@ module SeaColor {
             if (medals == null || medals.length <= 0) return null;
 
             var $ul = this.createElement('ul').
-                addClass('medals');//.
-            // addClass('mtm').
-            // addClass('mgcl').
-            // addClass('cl');
+                addClass('medals');
             var $li = jQuery('<li></li>');
             for (var i = 0; i < medals.length; i++) {
                 var item = medals[i];
@@ -178,10 +171,9 @@ module SeaColor {
             return $ul;
         }
         createCate(cate: MedalCate, level: number): JQuery {
-            console.log(cate);
             var $cate = this.createElement('div').
                 addClass('medal_frame').
-                addClass('level_' + level).
+                addClass(`level_${level}`).
                 data('cate_id', cate.id);
             $cate.append(this.createCateTitle(cate));
             var $childs = this.createChildCates(cate.child, level + 1);
@@ -207,6 +199,17 @@ module SeaColor {
             this.$page_medal_container.empty();
             this.$page_medal_container.after(this.$medal_container);
         }
+        origin_position: JQueryCoordinates;
+        setBackgorundPosition($item: JQuery): void {
+            var item_p = $item.offset();
+            $item.css('background-position', `${(-1 * (item_p.left - this.origin_position.left))}px ${-1 * (item_p.top - this.origin_position.top)}px`);
+        }
+        setBackgorund(): void {
+            this.origin_position = this.$medal_container.offset();
+            jQuery('.medals li').prepend(this.createElement('div').addClass('bg'));
+            var $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
+            $items.each((i, x) => this.setBackgorundPosition(jQuery(x)));
+        }
         
         /**
          * 初始化
@@ -216,6 +219,8 @@ module SeaColor {
             this.cate_list = this.setCateChild();
             this.initMedals();
             this.createMedalCates();
+            this.setBackgorund();
+            setTimeout(() => this.setBackgorund(), 300);
         }
     }
 }

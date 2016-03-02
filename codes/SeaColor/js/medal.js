@@ -66,10 +66,6 @@ var SeaColor;
          */
         Medal.prototype.isCate = function (cate, $obj) {
             var des = $obj.find('.tip_c p:first-child').text();
-            console.log(des);
-            console.log(cate.key);
-            console.log(des.indexOf(cate.key) >= 0);
-            console.log('\n\n');
             return des.indexOf(cate.key) >= 0;
         };
         /**
@@ -151,7 +147,6 @@ var SeaColor;
             return $ul;
         };
         Medal.prototype.createCate = function (cate, level) {
-            console.log(cate);
             var $cate = this.createElement('div').
                 addClass('medal_frame').
                 addClass('level_' + level).
@@ -178,17 +173,31 @@ var SeaColor;
             this.$page_medal_container.empty();
             this.$page_medal_container.after(this.$medal_container);
         };
+        Medal.prototype.setBackgorundPosition = function ($item) {
+            var item_p = $item.offset();
+            $item.css('background-position', (-1 * (item_p.left - this.origin_position.left)) + "px " + -1 * (item_p.top - this.origin_position.top) + "px");
+        };
+        Medal.prototype.setBackgorund = function () {
+            var _this = this;
+            this.origin_position = this.$medal_container.offset();
+            jQuery('.medals li').prepend(this.createElement('div').addClass('bg'));
+            var $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
+            $items.each(function (i, x) { return _this.setBackgorundPosition(jQuery(x)); });
+        };
         /**
          * 初始化
          */
         Medal.prototype.init = function () {
+            var _this = this;
             this.$page_medal_container = jQuery('ul.mtm.mgcl.cl');
             this.cate_list = this.setCateChild();
             this.initMedals();
             this.createMedalCates();
+            this.setBackgorund();
+            setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    })();
+    }());
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();

@@ -132,7 +132,7 @@ var AMing;
             };
             Helper.jq_url = 'http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js';
             return Helper;
-        })();
+        }());
         Core.Helper = Helper;
     })(Core = AMing.Core || (AMing.Core = {}));
 })(AMing || (AMing = {}));
@@ -148,12 +148,12 @@ var SeaColor;
              * 通用的js目录路径
              */
             this.path = '/template/SeaColor/';
-            this.hostname = 'http://amoe.me';
+            this.debug_path = 'http://ts.amoe.me/seacolor/';
         }
         Append.prototype.getFileUrl = function (name) {
             var url = this.path + name;
             if (this.is_debug) {
-                url = this.hostname + url + '?v=' + (new Date()).getUTCMilliseconds();
+                url = this.debug_path + name + '?v=' + (new Date()).getUTCMilliseconds();
             }
             return url;
         };
@@ -199,7 +199,7 @@ var SeaColor;
             }
         };
         return Append;
-    })();
+    }());
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Append()).init();

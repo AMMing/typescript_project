@@ -128,11 +128,11 @@ module SeaColor {
          * 通用的js目录路径
          */
         path: string = '/template/SeaColor/';
-        hostname: string = 'http://amoe.me';
+        debug_path: string = 'http://ts.amoe.me/seacolor/';
         getFileUrl(name: string): string {
             var url = this.path + name;
             if (this.is_debug) {
-                url = this.hostname + url + '?v=' + (new Date()).getUTCMilliseconds();
+                url = this.debug_path + name + '?v=' + (new Date()).getUTCMilliseconds();
             }
 
             return url;
