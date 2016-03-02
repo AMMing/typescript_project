@@ -59,7 +59,7 @@ module AMing.Core {
 		 * @param onload_func 加载完js之后onload执行的方法
 		 */
         static append_js(url: string, onload_func: any = null): HTMLScriptElement {
-            var script = document.createElement('script');
+            let script = document.createElement('script');
             script.src = url;
             if (this.is_not_null_func(onload_func)) {
                 script.onload = onload_func;
@@ -72,7 +72,7 @@ module AMing.Core {
 		 * @param ready ready事件
 		 */
         static append_jquery(ready: any = null): void {
-            var jqload = () => {
+            let jqload = () => {
                 jQuery(document).ready(jq=> this.call_func(ready));
             };
             if (!window['jQuery']) {
@@ -87,7 +87,7 @@ module AMing.Core {
 		 * @param onload_func 加载完css之后onload执行的方法
 		 */
         static append_css(url: string): HTMLLinkElement {
-            var link = document.createElement('link');
+            let link = document.createElement('link');
             link.href = url;
             link.rel = 'stylesheet';
             link.type = 'text/css';
@@ -131,7 +131,7 @@ module SeaColor {
         path: string = '/template/SeaColor/';
         debug_path: string = 'http://ts.amoe.me/seacolor/';
         getFileUrl(name: string): string {
-            var url = this.path + name;
+            let url = this.path + name;
             if (this.is_debug) {
                 url = this.debug_path + name + '?v=' + (new Date()).getUTCMilliseconds();
             }
@@ -171,7 +171,7 @@ module SeaColor {
          */
         init(): void {
             this.CssMini('append');
-            var now_url = window.location.href;
+            let now_url = window.location.href;
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }

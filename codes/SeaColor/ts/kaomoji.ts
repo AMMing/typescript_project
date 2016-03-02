@@ -108,7 +108,7 @@ module SeaColor {
          * @param text 文字
          */
         createItem(text: string): JQuery {
-            var span = jQuery('<span></span>').
+            let span = jQuery('<span></span>').
                 html(text);
 
             return jQuery('<li></li>').
@@ -137,9 +137,9 @@ module SeaColor {
          * 创建列表
          */
         createListbox(): JQuery {
-            var close = jQuery('<div></div>').
+            let close = jQuery('<div></div>').
                 addClass('close');
-            var ul = jQuery('<ul></ul>');
+            let ul = jQuery('<ul></ul>');
             jQuery.each(this.text_list, (i, x) => ul.append(this.createItem(x)));
 
             return jQuery('<div></div>').
@@ -201,8 +201,8 @@ module SeaColor {
          * 是否存在回复编辑器
          */
         hasReplyEdit(): boolean {
-            var $edit = jQuery('#postform');
-            var fwin = $edit.attr('fwin');
+            let $edit = jQuery('#postform');
+            let fwin = $edit.attr('fwin');
 
             return $edit.length > 0 && fwin == 'reply';
         }
@@ -220,7 +220,7 @@ module SeaColor {
         bindButtonsEvent($obj: JQuery): void {
             $obj.bind('click', e=> {
                 if (this.$img_listbox.css('display') == 'none') {
-                    var p = jQuery(e.currentTarget).offset();
+                    let p = jQuery(e.currentTarget).offset();
                     this.insert_func = this.insertTextToFull;
                     this.showDialog({
                         top: p.top + 50,
@@ -239,7 +239,7 @@ module SeaColor {
         bindMiniButtonEvent($obj: JQuery): void {
             $obj.bind('click', e=> {
                 if (this.$img_listbox.css('display') == 'none') {
-                    var p = jQuery(e.currentTarget).offset();
+                    let p = jQuery(e.currentTarget).offset();
                     this.insert_func = this.insertTextToMini;
                     this.showDialog({
                         top: p.top + 25,
@@ -258,7 +258,7 @@ module SeaColor {
         bindReplyButtonEvent($obj: JQuery): void {
             $obj.bind('click', e=> {
                 if (this.$img_listbox.css('display') == 'none') {
-                    var p = jQuery(e.currentTarget).offset();
+                    let p = jQuery(e.currentTarget).offset();
                     this.insert_func = this.insertTextToReply;
                     this.showDialog(p);
                 } else {
@@ -272,7 +272,7 @@ module SeaColor {
          */
         bindImagelistEvent($div: JQuery): void {
             $div.find('li').bind('click', e=> {
-                var val = jQuery(e.currentTarget).data('val');
+                let val = jQuery(e.currentTarget).data('val');
                 if (!!val) {
                     this.insert_func(val);
                     this.hideDialog();
@@ -341,7 +341,7 @@ module SeaColor {
          * 初始化listbox
          */
         initImageList(): void {
-            var $listbox = this.createListbox();
+            let $listbox = this.createListbox();
             this.setCss($listbox);
             this.bindImagelistEvent($listbox);
             this.$img_listbox = $listbox;
@@ -353,7 +353,7 @@ module SeaColor {
         initFullEdit(): void {
             if (!this.hasEdit()) return;
 
-            var btn = this.createButton();
+            let btn = this.createButton();
             jQuery('#e_body #e_sml').after(btn);
             this.bindButtonsEvent(btn);
         }
@@ -363,7 +363,7 @@ module SeaColor {
         initMiniEdit(): void {
             if (!this.hasMiniEdit()) return;
 
-            var btn = this.createMiniBtn();
+            let btn = this.createMiniBtn();
             jQuery('#fastpostform #fastpostsml').after(btn);
             this.bindMiniButtonEvent(btn);
         }
@@ -377,7 +377,7 @@ module SeaColor {
 
             console.log('initReplyEdit');
             clearInterval(interval);
-            var btn = this.createMiniBtn();
+            let btn = this.createMiniBtn();
             jQuery('#postform #postsml').after(btn);
             this.bindReplyButtonEvent(btn);
         }
@@ -386,7 +386,7 @@ module SeaColor {
          */
         bindReplayShowEvent(): void {
             jQuery('.fastre').bind('click', () => {
-                var interval = setInterval(() => this.initReplyEdit(interval), 500);
+                let interval = setInterval(() => this.initReplyEdit(interval), 500);
             });
         }
         /**

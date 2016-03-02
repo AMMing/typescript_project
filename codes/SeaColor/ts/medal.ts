@@ -68,9 +68,9 @@ module SeaColor {
          * 归分子父分类
          */
         setCateChild(parent_id: number = 0): MedalCate[] {
-            var list = [];
-            for (var i = 0; i < this.cate_data.length; i++) {
-                var item = this.cate_data[i];
+            let list = [];
+            for (let i = 0; i < this.cate_data.length; i++) {
+                let item = this.cate_data[i];
                 if (item.parent_id == parent_id) {
                     item.child = this.setCateChild(item.id);
                     list.push(item);
@@ -83,7 +83,7 @@ module SeaColor {
          * 勋章是否是属于该分类的
          */
         isCate(cate: MedalCate, $obj: JQuery): boolean {
-            var des = $obj.find('.tip_c p:first-child').text();
+            let des = $obj.find('.tip_c p:first-child').text();
             return des.indexOf(cate.key) >= 0;
         }
         /**
@@ -93,15 +93,15 @@ module SeaColor {
             if (cates == null || $objs == null || cates.length <= 0 || $objs.length <= 0) {
                 return;
             }
-            for (var c = 0; c < cates.length; c++) {
-                var cate = cates[c];
+            for (let c = 0; c < cates.length; c++) {
+                let cate = cates[c];
                 if (cate.medals == null) {
                     cate.medals = [];
                 }
-                for (var i = 0; i < $objs.length; i++) {
-                    var item = $objs[i];
+                for (let i = 0; i < $objs.length; i++) {
+                    let item = $objs[i];
                     if (this.isCate(cate, item)) {
-                        var temp = $objs.splice(i, 1);
+                        let temp = $objs.splice(i, 1);
                         cate.medals.push(temp[0]);
                         i--;
                     }
@@ -114,8 +114,8 @@ module SeaColor {
          * 初始化勋章数据 
          */
         initMedals(): void {
-            var medals = [];
-            var $medals = this.$page_medal_container.find('li');
+            let medals = [];
+            let $medals = this.$page_medal_container.find('li');
             $medals.each((i, x) => medals.push(jQuery(x)));
             this.setCateMedals(this.cate_list, medals);
             //分配剩下的勋章
@@ -135,7 +135,7 @@ module SeaColor {
         }
 
         createCateTitle(cate: MedalCate): JQuery {
-            var $title = this.createElement('div').addClass('title');
+            let $title = this.createElement('div').addClass('title');
             $title.append(this.createElement('div').addClass('bg'));
             $title.append(this.createElement('h5').text(cate.name));
 
@@ -144,9 +144,9 @@ module SeaColor {
         createChildCates(cates: MedalCate[], level: number): JQuery {
             if (cates == null || cates.length <= 0) return null;
 
-            var $div = this.createElement('div').addClass('child');
-            for (var i = 0; i < cates.length; i++) {
-                var item = cates[i];
+            let $div = this.createElement('div').addClass('child');
+            for (let i = 0; i < cates.length; i++) {
+                let item = cates[i];
                 $div.append(this.createCate(item, level));
             }
 
@@ -155,27 +155,27 @@ module SeaColor {
         createMedals(medals: JQuery[]): JQuery {
             if (medals == null || medals.length <= 0) return null;
 
-            var $ul = this.createElement('ul').
+            let $ul = this.createElement('ul').
                 addClass('medals');
-            var $li = jQuery('<li></li>');
-            for (var i = 0; i < medals.length; i++) {
-                var item = medals[i];
+            let $li = jQuery('<li></li>');
+            for (let i = 0; i < medals.length; i++) {
+                let item = medals[i];
                 $ul.append(item);
             }
 
             return $ul;
         }
         createCate(cate: MedalCate, level: number): JQuery {
-            var $cate = this.createElement('div').
+            let $cate = this.createElement('div').
                 addClass('medal_frame').
                 addClass(`level_${level}`).
                 data('cate_id', cate.id);
             $cate.append(this.createCateTitle(cate));
-            var $childs = this.createChildCates(cate.child, level + 1);
+            let $childs = this.createChildCates(cate.child, level + 1);
             if ($childs != null) {
                 $cate.append($childs);
             }
-            var $medals = this.createMedals(cate.medals);
+            let $medals = this.createMedals(cate.medals);
             if ($medals != null) {
                 $cate.append($medals);
             }
@@ -185,9 +185,9 @@ module SeaColor {
         }
 
         createMedalCates() {
-            var $div = this.createElement('div').addClass('medal_main');
-            for (var i = 0; i < this.cate_list.length; i++) {
-                var item = this.cate_list[i];
+            let $div = this.createElement('div').addClass('medal_main');
+            for (let i = 0; i < this.cate_list.length; i++) {
+                let item = this.cate_list[i];
                 $div.append(this.createCate(item, 1));
             }
             this.$medal_container = $div;
@@ -196,13 +196,13 @@ module SeaColor {
         }
         origin_position: JQueryCoordinates;
         setBackgorundPosition($item: JQuery): void {
-            var item_p = $item.offset();
+            let item_p = $item.offset();
             $item.css('background-position', `${(-1 * (item_p.left - this.origin_position.left))}px ${-1 * (item_p.top - this.origin_position.top)}px`);
         }
         setBackgorund(): void {
             this.origin_position = this.$medal_container.offset();
             jQuery('.medals li').prepend(this.createElement('div').addClass('bg'));
-            var $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
+            let $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
             $items.each((i, x) => this.setBackgorundPosition(jQuery(x)));
         }
         
