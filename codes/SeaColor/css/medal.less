@@ -1,0 +1,118 @@
+/*  勋章页面样式
+*   update date 2016.03.02 by AMing
+*/
+
+// 图片域名
+@img_url:'http://amoe.me';
+// 背景图片
+@bg_name:'pixiv47503045.jpg';
+// 模糊值
+@blur_val:2px;
+
+.medal_main{
+    .title{
+        line-height: 50px;
+        font-size: 18px;
+        .medals{
+            li{
+                height: 48px;
+                margin: 10px;
+                padding: 0;
+                position: relative;
+                box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+                border-radius: 8px;
+                border: 1px solid #fff;
+            }
+        }
+        & > h5 {
+            position: relative;
+            color: #FFF;
+            font-size: 24px;
+            margin-left: 20px;
+            text-shadow: rgba(0, 0, 0, 0.8) 0 0 5px;
+            font-weight: normal;
+        }
+    }
+    .title,.medals li {
+        height: 48px;
+        margin: 10px;
+        padding: 0;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+        border-radius: 8px;
+        border: 1px solid #fff;
+    }
+    .title:hover, .medals li:hover {
+        box-shadow: rgba(9, 50, 167, 0.4) 2px 2px 8px;
+    }
+    .title > .bg, .medals li >.bg_bak {
+        background: url('@{img_url}/images/@{bg_name}');
+        background-size: 990px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.6;
+        -webkit-filter: blur(@blur_val);
+        -ms-filter: blur(@blur_val);
+        filter: blur(@blur_val);
+    }
+    .child {
+        margin-left: 20px;
+    }
+    .medals {
+        margin-left: 20px;
+        li {
+            display: block;
+            width: auto;
+            float: left;
+            cursor: pointer;
+            margin-top: 0;
+            margin-right: 0;
+            .mg_img {
+                width: auto;
+                height: auto;
+                padding: 0;
+                background: none;
+                float: left;
+                img {
+                    margin: 10px;
+                    margin-top: 10px!important;
+                }
+            }
+            & > p {
+                margin: 0 10px;
+                text-align: center;
+                display: none;
+                &.xw1 {
+                    display: block;
+                    float: left;
+                    line-height: 50px;
+                    margin-left: 0;
+                    font-size: 14px;
+                }
+            }
+            *{
+                position: relative;
+            }
+            & > .bg{
+                position: absolute;
+            }
+        }
+    }
+    // 多级分类背景样式
+    .cate_level(@lv){
+        .level_@{lv} > .title > .bg {
+            background-position: (-1 * (@lv - 1) * 20)px (-1 *(@lv - 1) * 60)px;
+        }
+    }
+    .cate_level(1);
+    .cate_level(2);
+    .cate_level(3);
+    .cate_level(4);
+    .cate_level(5);
+}
+.clear {
+    clear: both;
+} 
