@@ -1,18 +1,20 @@
+//out:false
 /*  勋章页面样式
 *   update date 2016.03.02 by AMing
 */
-
+ 
 // 图片域名
 @img_url:'http://amoe.me';
 // 背景图片
 @bg_name:'pixiv47503045.jpg';
 // 模糊值
 @blur_val:2px;
-
+ 
 .medal_main{
     .title{
         line-height: 50px;
         font-size: 18px;
+        
         .medals{
             li{
                 height: 48px;
@@ -41,6 +43,7 @@
         box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
         border-radius: 8px;
         border: 1px solid #fff;
+        cursor: pointer;
     }
     .title:hover, .medals li:hover {
         box-shadow: rgba(9, 50, 167, 0.4) 2px 2px 8px;
@@ -63,6 +66,7 @@
     }
     .medals {
         margin-left: 20px;
+        
         li {
             display: block;
             width: auto;
@@ -70,12 +74,14 @@
             cursor: pointer;
             margin-top: 0;
             margin-right: 0;
+            
             .mg_img {
                 width: auto;
                 height: auto;
                 padding: 0;
                 background: none;
                 float: left;
+                
                 img {
                     margin: 10px;
                     margin-top: 10px!important;
@@ -85,6 +91,7 @@
                 margin: 0 10px;
                 text-align: center;
                 display: none;
+                
                 &.xw1 {
                     display: block;
                     float: left;

@@ -31,6 +31,7 @@
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
   border-radius: 8px;
   border: 1px solid #fff;
+  cursor: pointer;
 }
 .medal_main .title:hover,
 .medal_main .medals li:hover {
