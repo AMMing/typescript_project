@@ -7,7 +7,7 @@ declare function insertText(text: string, val: any);
  */
 declare function seditor_insertunit(text: string, val: any);
 /*
-** append scripts by AMing
+** append kaomoji scripts by AMing
 ** update 2016-02-22
 */
 module SeaColor {

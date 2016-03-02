@@ -1,12 +1,7 @@
-// ==UserScript==
-// @name         海色自定义勋章样式
-// @namespace    http://kancolle.aemedia.org/medal/By/AMing
-// @version      1.0
-// @description  海色自定义勋章样式
-// @author       AMing
-// @match        http://kancolle.aemedia.org/home.php?mod=medal*
-// @grant        none
-// ==/UserScript==
+/*
+** append scripts by AMing
+** update 2016-03-02
+*/
 module SeaColor {
     /**
      * 勋章分类

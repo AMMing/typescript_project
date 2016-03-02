@@ -1,12 +1,7 @@
-// ==UserScript==
-// @name         海色自定义勋章样式
-// @namespace    http://kancolle.aemedia.org/medal/By/AMing
-// @version      1.0
-// @description  海色自定义勋章样式
-// @author       AMing
-// @match        http://kancolle.aemedia.org/home.php?mod=medal*
-// @grant        none
-// ==/UserScript==
+/*
+** append scripts by AMing
+** update 2016-03-02
+*/
 var SeaColor;
 (function (SeaColor) {
     /**
@@ -135,10 +130,7 @@ var SeaColor;
             if (medals == null || medals.length <= 0)
                 return null;
             var $ul = this.createElement('ul').
-                addClass('medals'); //.
-            // addClass('mtm').
-            // addClass('mgcl').
-            // addClass('cl');
+                addClass('medals');
             var $li = jQuery('<li></li>');
             for (var i = 0; i < medals.length; i++) {
                 var item = medals[i];
@@ -149,7 +141,7 @@ var SeaColor;
         Medal.prototype.createCate = function (cate, level) {
             var $cate = this.createElement('div').
                 addClass('medal_frame').
-                addClass('level_' + level).
+                addClass("level_" + level).
                 data('cate_id', cate.id);
             $cate.append(this.createCateTitle(cate));
             var $childs = this.createChildCates(cate.child, level + 1);
@@ -197,7 +189,7 @@ var SeaColor;
             setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    }());
+    })();
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();

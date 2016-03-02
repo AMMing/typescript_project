@@ -1,5 +1,5 @@
 /*
-** append scripts by AMing
+** append kaomoji scripts by AMing
 ** update 2016-02-22
 */
 var SeaColor;
@@ -391,7 +391,7 @@ var SeaColor;
             this.bindReplayShowEvent();
         };
         return Kaomoji;
-    }());
+    })();
     SeaColor.Kaomoji = Kaomoji;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Kaomoji()).init();

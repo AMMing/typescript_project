@@ -118,6 +118,7 @@ module AMing.Core {
         }
     }
 }
+
 module SeaColor {
     /**
      * 追加引用
