@@ -64,6 +64,7 @@
   cursor: pointer;
   margin-top: 0;
   margin-right: 0;
+  width: 180px;
 }
 .medal_main .medals li .mg_img {
   width: auto;
@@ -87,12 +88,47 @@
   line-height: 50px;
   margin-left: 0;
   font-size: 14px;
+  width: 120px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: normal;
+  text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
+  color: #2F4D6F;
 }
 .medal_main .medals li * {
   position: relative;
 }
 .medal_main .medals li > .bg {
   position: absolute;
+}
+.medal_main .medals li .tip {
+  position: absolute;
+  top: 50px;
+  left: -1px;
+  width: 100%;
+  padding: 0;
+  z-index: 99;
+  border: 1px solid #fff;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 5px 8px;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.medal_main .medals li .tip .tip_c {
+  margin: 15px 10px;
+  font-size: 12px;
+  color: #2182D8;
+  text-shadow: rgba(11, 106, 187, 0.7) 0 0 5px;
+}
+.medal_main .medals li .tip .tip_c .mtn {
+  text-align: right;
+  color: #D85521;
+  text-shadow: rgba(224, 99, 40, 0.7) 0 0 5px;
+}
+.medal_main .medals li .tip .tip_horn {
+  display: none;
 }
 .medal_main .level_1 > .title > .bg {
   background-position: 0 px 0 px;

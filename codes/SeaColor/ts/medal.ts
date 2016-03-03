@@ -35,7 +35,10 @@ module SeaColor {
                 id: 1,
                 parent_id: 0,
                 name: '发放中',
-                key: '钢100'
+                key: '钢100',
+                child: [
+
+                ]
             }, {
                 id: 2,
                 parent_id: 0,
@@ -205,6 +208,23 @@ module SeaColor {
             let $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
             $items.each((i, x) => this.setBackgorundPosition(jQuery(x)));
         }
+        hideAllMedalTip(): void {
+            this.$medal_container.find('.medals li .tip').hide();
+        }
+        setMedalTip(): void {
+            let $medals = this.$medal_container.find('.medals li');
+            $medals.find('.mg_img').each((i, x) => (x as HTMLDivElement).onmouseover = null);
+            $medals.mouseover(e => {
+                this.hideAllMedalTip();
+                let $this = jQuery(e.currentTarget);
+                $this.find('.tip').show();
+            });
+            $medals.mouseout(e=> this.hideAllMedalTip());
+            $medals.click(e=> {
+                let $this = jQuery(e.currentTarget);
+                $this.find('.xi2').trigger('click');
+            });
+        }
         
         /**
          * 初始化
@@ -215,6 +235,7 @@ module SeaColor {
             this.initMedals();
             this.createMedalCates();
             this.setBackgorund();
+            this.setMedalTip();
             setTimeout(() => this.setBackgorund(), 300);
         }
     }

@@ -176,6 +176,24 @@ var SeaColor;
             var $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
             $items.each(function (i, x) { return _this.setBackgorundPosition(jQuery(x)); });
         };
+        Medal.prototype.hideAllMedalTip = function () {
+            this.$medal_container.find('.medals li .tip').hide();
+        };
+        Medal.prototype.setMedalTip = function () {
+            var _this = this;
+            var $medals = this.$medal_container.find('.medals li');
+            $medals.find('.mg_img').each(function (i, x) { return x.onmouseover = null; });
+            $medals.mouseover(function (e) {
+                _this.hideAllMedalTip();
+                var $this = jQuery(e.currentTarget);
+                $this.find('.tip').show();
+            });
+            $medals.mouseout(function (e) { return _this.hideAllMedalTip(); });
+            $medals.click(function (e) {
+                var $this = jQuery(e.currentTarget);
+                $this.find('.xi2').trigger('click');
+            });
+        };
         /**
          * 初始化
          */
@@ -186,10 +204,11 @@ var SeaColor;
             this.initMedals();
             this.createMedalCates();
             this.setBackgorund();
+            this.setMedalTip();
             setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    })();
+    }());
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();

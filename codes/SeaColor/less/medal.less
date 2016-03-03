@@ -74,6 +74,7 @@
             cursor: pointer;
             margin-top: 0;
             margin-right: 0;
+            width: 180px;
             
             .mg_img {
                 width: auto;
@@ -98,6 +99,13 @@
                     line-height: 50px;
                     margin-left: 0;
                     font-size: 14px;
+                    width: 120px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    font-weight: normal;
+                    text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
+                    color: #2F4D6F;
                 }
             }
             *{
@@ -105,6 +113,36 @@
             }
             & > .bg{
                 position: absolute;
+            }
+            .tip{
+                position: absolute;
+                top: 50px;
+                left: -1px;
+                width: 100%;
+                padding: 0;
+                z-index: 99;
+                border: 1px solid #fff;
+                background: #fff;
+                box-shadow: rgba(0, 0, 0, 0.4) 2px 5px 8px;
+                border-radius: 8px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                
+                .tip_c{
+                    margin: 15px 10px;
+                    font-size: 12px;
+                    color: #2182D8;
+                    text-shadow: rgba(11,106,187,0.7) 0 0 5px;
+                        
+                    .mtn{
+                        text-align: right;
+                        color: #D85521;
+                        text-shadow: rgba(224, 99, 40, 0.7) 0 0 5px;
+                    }
+                }
+                .tip_horn{
+                    display: none;
+                }
             }
         }
     }
