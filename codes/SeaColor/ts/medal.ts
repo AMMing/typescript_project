@@ -28,6 +28,7 @@ module SeaColor {
         cate_list: MedalCate[] = [
             {
                 name: '发放中',
+                key: '~',
                 child: [
                     { name: '活动勋章' },
                     { name: '节日勋章' },
@@ -43,6 +44,7 @@ module SeaColor {
                 ]
             }, {
                 name: '已绝版',
+                key: '1',
                 child: [
                     { name: '活动勋章' },
                     { name: '节日勋章' },
@@ -66,9 +68,11 @@ module SeaColor {
         isCate(cate: MedalCate, $obj: JQuery): boolean {
             let des = $obj.find('.tip_c p:first-child').text();
             let keyword = cate.key;
-            if (AMing.Core.Helper.is_null(keyword)) {
+            if (!keyword) {
                 keyword = cate.name.replace('勋章', '');
             }
+            console.log(keyword);
+            console.log(des);
             return des.indexOf(keyword) >= 0;
         }
         /**
@@ -159,6 +163,9 @@ module SeaColor {
             let $medals = this.createMedals(cate.medals);
             if ($medals != null) {
                 $cate.append($medals);
+                //包含勋章的时候显示自己和通知父级分类
+                $cate.addClass('show');
+                $cate.parents('.medal_frame').addClass('show');
             }
             $cate.append(this.createClear());
 

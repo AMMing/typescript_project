@@ -132,7 +132,7 @@ var AMing;
             };
             Helper.jq_url = 'http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js';
             return Helper;
-        })();
+        }());
         Core.Helper = Helper;
     })(Core = AMing.Core || (AMing.Core = {}));
 })(AMing || (AMing = {}));
@@ -199,7 +199,7 @@ var SeaColor;
             }
         };
         return Append;
-    })();
+    }());
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Append()).init();

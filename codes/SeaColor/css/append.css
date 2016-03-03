@@ -1,11 +1,17 @@
 /*  勋章页面样式
 *   update date 2016.03.02 by AMing
 */
-.medal_main .title {
+.medal_main .medal_frame {
+  display: none;
+}
+.medal_main .medal_frame.show {
+  display: block;
+}
+.medal_main .medal_frame .title {
   line-height: 50px;
   font-size: 18px;
 }
-.medal_main .title .medals li {
+.medal_main .medal_frame .title .medals li {
   height: 48px;
   margin: 10px;
   padding: 0;
@@ -14,7 +20,7 @@
   border-radius: 8px;
   border: 1px solid #fff;
 }
-.medal_main .title > h5 {
+.medal_main .medal_frame .title > h5 {
   position: relative;
   color: #FFF;
   font-size: 24px;
@@ -22,8 +28,8 @@
   text-shadow: rgba(0, 0, 0, 0.8) 0 0 5px;
   font-weight: normal;
 }
-.medal_main .title,
-.medal_main .medals li {
+.medal_main .medal_frame .title,
+.medal_main .medal_frame .medals li {
   height: 48px;
   margin: 10px;
   padding: 0;
@@ -33,12 +39,12 @@
   border: 1px solid #fff;
   cursor: pointer;
 }
-.medal_main .title:hover,
-.medal_main .medals li:hover {
+.medal_main .medal_frame .title:hover,
+.medal_main .medal_frame .medals li:hover {
   box-shadow: rgba(9, 50, 167, 0.4) 2px 2px 8px;
 }
-.medal_main .title > .bg,
-.medal_main .medals li > .bg_bak {
+.medal_main .medal_frame .title > .bg,
+.medal_main .medal_frame .medals li > .bg_bak {
   background: url('http://amoe.me/images/pixiv47503045.jpg');
   background-size: 990px;
   width: 100%;
@@ -51,13 +57,13 @@
   -ms-filter: blur(2px);
   filter: blur(2px);
 }
-.medal_main .child {
+.medal_main .medal_frame .child {
   margin-left: 20px;
 }
-.medal_main .medals {
+.medal_main .medal_frame .medals {
   margin-left: 20px;
 }
-.medal_main .medals li {
+.medal_main .medal_frame .medals li {
   display: block;
   width: auto;
   float: left;
@@ -66,23 +72,23 @@
   margin-right: 0;
   width: 180px;
 }
-.medal_main .medals li .mg_img {
+.medal_main .medal_frame .medals li .mg_img {
   width: auto;
   height: auto;
   padding: 0;
   background: none;
   float: left;
 }
-.medal_main .medals li .mg_img img {
+.medal_main .medal_frame .medals li .mg_img img {
   margin: 10px;
   margin-top: 10px!important;
 }
-.medal_main .medals li > p {
+.medal_main .medal_frame .medals li > p {
   margin: 0 10px;
   text-align: center;
   display: none;
 }
-.medal_main .medals li > p.xw1 {
+.medal_main .medal_frame .medals li > p.xw1 {
   display: block;
   float: left;
   line-height: 50px;
@@ -96,13 +102,13 @@
   text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
   color: #2F4D6F;
 }
-.medal_main .medals li * {
+.medal_main .medal_frame .medals li * {
   position: relative;
 }
-.medal_main .medals li > .bg {
+.medal_main .medal_frame .medals li > .bg {
   position: absolute;
 }
-.medal_main .medals li .tip {
+.medal_main .medal_frame .medals li .tip {
   position: absolute;
   top: 50px;
   left: -1px;
@@ -116,18 +122,18 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.medal_main .medals li .tip .tip_c {
+.medal_main .medal_frame .medals li .tip .tip_c {
   margin: 15px 10px;
   font-size: 12px;
   color: #2182D8;
   text-shadow: rgba(11, 106, 187, 0.7) 0 0 5px;
 }
-.medal_main .medals li .tip .tip_c .mtn {
+.medal_main .medal_frame .medals li .tip .tip_c .mtn {
   text-align: right;
   color: #D85521;
   text-shadow: rgba(224, 99, 40, 0.7) 0 0 5px;
 }
-.medal_main .medals li .tip .tip_horn {
+.medal_main .medal_frame .medals li .tip .tip_horn {
   display: none;
 }
 .medal_main .level_1 > .title > .bg {

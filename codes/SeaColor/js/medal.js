@@ -15,6 +15,7 @@ var SeaColor;
             this.cate_list = [
                 {
                     name: '发放中',
+                    key: '~',
                     child: [
                         { name: '活动勋章' },
                         { name: '节日勋章' },
@@ -30,6 +31,7 @@ var SeaColor;
                     ]
                 }, {
                     name: '已绝版',
+                    key: '1',
                     child: [
                         { name: '活动勋章' },
                         { name: '节日勋章' },
@@ -52,9 +54,11 @@ var SeaColor;
         Medal.prototype.isCate = function (cate, $obj) {
             var des = $obj.find('.tip_c p:first-child').text();
             var keyword = cate.key;
-            if (AMing.Core.Helper.is_null(keyword)) {
+            if (!keyword) {
                 keyword = cate.name.replace('勋章', '');
             }
+            console.log(keyword);
+            console.log(des);
             return des.indexOf(keyword) >= 0;
         };
         /**
@@ -141,6 +145,9 @@ var SeaColor;
             var $medals = this.createMedals(cate.medals);
             if ($medals != null) {
                 $cate.append($medals);
+                //包含勋章的时候显示自己和通知父级分类
+                $cate.addClass('show');
+                $cate.parents('.medal_frame').addClass('show');
             }
             $cate.append(this.createClear());
             return $cate;
@@ -197,7 +204,7 @@ var SeaColor;
             setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    })();
+    }());
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();
