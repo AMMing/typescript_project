@@ -12,56 +12,50 @@ var SeaColor;
             /**
              * 分类数据
              */
-            this.cate_data = [
+            this.cate_list = [
                 {
-                    id: 1,
-                    parent_id: 0,
                     name: '发放中',
-                    key: '钢100'
+                    child: [
+                        { name: '活动勋章' },
+                        { name: '节日勋章' },
+                        { name: '海色祭勋章' },
+                        {
+                            name: '真爱勋章',
+                            child: [
+                                { name: '2015年冬季款' }
+                            ]
+                        },
+                        { name: '作死勋章' },
+                        { name: '杂项' }
+                    ]
                 }, {
-                    id: 2,
-                    parent_id: 0,
-                    name: '绝版',
-                    key: '绝版'
-                }, {
-                    id: 3,
-                    parent_id: 1,
-                    name: '真爱',
-                    key: '真爱'
-                }, {
-                    id: 4,
-                    parent_id: 2,
-                    name: '甲',
-                    key: '甲'
-                }, {
-                    id: 5,
-                    parent_id: 4,
-                    name: '2015',
-                    key: '2015'
+                    name: '已绝版',
+                    child: [
+                        { name: '活动勋章' },
+                        { name: '节日勋章' },
+                        { name: '海色祭勋章' },
+                        {
+                            name: '真爱勋章',
+                            child: [
+                                { name: '2015年冬季款' }
+                            ]
+                        },
+                        { name: '作死勋章' },
+                        { name: '杂项' }
+                    ]
                 }
             ];
         }
-        /**
-         * 归分子父分类
-         */
-        Medal.prototype.setCateChild = function (parent_id) {
-            if (parent_id === void 0) { parent_id = 0; }
-            var list = [];
-            for (var i = 0; i < this.cate_data.length; i++) {
-                var item = this.cate_data[i];
-                if (item.parent_id == parent_id) {
-                    item.child = this.setCateChild(item.id);
-                    list.push(item);
-                }
-            }
-            return list;
-        };
         /**
          * 勋章是否是属于该分类的
          */
         Medal.prototype.isCate = function (cate, $obj) {
             var des = $obj.find('.tip_c p:first-child').text();
-            return des.indexOf(cate.key) >= 0;
+            var keyword = cate.key;
+            if (AMing.Core.Helper.is_null(keyword)) {
+                keyword = cate.name.replace('勋章', '');
+            }
+            return des.indexOf(keyword) >= 0;
         };
         /**
          * 根据分类筛选勋章
@@ -97,10 +91,7 @@ var SeaColor;
             this.setCateMedals(this.cate_list, medals);
             //分配剩下的勋章
             this.cate_list.push({
-                id: 9999,
-                parent_id: 0,
                 name: '其他',
-                key: null,
                 medals: medals
             });
         };
@@ -141,8 +132,7 @@ var SeaColor;
         Medal.prototype.createCate = function (cate, level) {
             var $cate = this.createElement('div').
                 addClass('medal_frame').
-                addClass("level_" + level).
-                data('cate_id', cate.id);
+                addClass("level_" + level);
             $cate.append(this.createCateTitle(cate));
             var $childs = this.createChildCates(cate.child, level + 1);
             if ($childs != null) {
@@ -200,7 +190,6 @@ var SeaColor;
         Medal.prototype.init = function () {
             var _this = this;
             this.$page_medal_container = jQuery('ul.mtm.mgcl.cl');
-            this.cate_list = this.setCateChild();
             this.initMedals();
             this.createMedalCates();
             this.setBackgorund();
@@ -208,7 +197,7 @@ var SeaColor;
             setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    }());
+    })();
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();

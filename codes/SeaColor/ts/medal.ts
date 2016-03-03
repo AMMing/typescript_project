@@ -7,19 +7,14 @@ module SeaColor {
      * 勋章分类
      */
     export interface MedalCate {
-        id: number;
-        /**
-         * 分级分类ID，0为顶级分类
-         */
-        parent_id: number;
         /**
          * 分类名
          */
         name: string;
         /**
-         * 用于辨别勋章分类的关键词
+         * 用于辨别勋章分类的关键词 为空时采用分类名作为关键词
          */
-        key: string;
+        key?: string;
         child?: MedalCate[];
         medals?: JQuery[];
     }
@@ -30,64 +25,51 @@ module SeaColor {
         /**
          * 分类数据
          */
-        cate_data: MedalCate[] = [
+        cate_list: MedalCate[] = [
             {
-                id: 1,
-                parent_id: 0,
                 name: '发放中',
-                key: '钢100',
                 child: [
-
+                    { name: '活动勋章' },
+                    { name: '节日勋章' },
+                    { name: '海色祭勋章' },
+                    {
+                        name: '真爱勋章',
+                        child: [
+                            { name: '2015年冬季款' }
+                        ]
+                    },
+                    { name: '作死勋章' },
+                    { name: '杂项' }
                 ]
             }, {
-                id: 2,
-                parent_id: 0,
-                name: '绝版',
-                key: '绝版'
-            }, {
-                id: 3,
-                parent_id: 1,
-                name: '真爱',
-                key: '真爱'
-            }, {
-                id: 4,
-                parent_id: 2,
-                name: '甲',
-                key: '甲'
-            }, {
-                id: 5,
-                parent_id: 4,
-                name: '2015',
-                key: '2015'
+                name: '已绝版',
+                child: [
+                    { name: '活动勋章' },
+                    { name: '节日勋章' },
+                    { name: '海色祭勋章' },
+                    {
+                        name: '真爱勋章',
+                        child: [
+                            { name: '2015年冬季款' }
+                        ]
+                    },
+                    { name: '作死勋章' },
+                    { name: '杂项' }
+                ]
             }
         ];
-        /**
-         * 归分完子父的分类列表
-         */
-        cate_list: MedalCate[];
         $page_medal_container: JQuery;
         $medal_container: JQuery;
-        /**
-         * 归分子父分类
-         */
-        setCateChild(parent_id: number = 0): MedalCate[] {
-            let list = [];
-            for (let i = 0; i < this.cate_data.length; i++) {
-                let item = this.cate_data[i];
-                if (item.parent_id == parent_id) {
-                    item.child = this.setCateChild(item.id);
-                    list.push(item);
-                }
-            }
-
-            return list;
-        }
         /**
          * 勋章是否是属于该分类的
          */
         isCate(cate: MedalCate, $obj: JQuery): boolean {
             let des = $obj.find('.tip_c p:first-child').text();
-            return des.indexOf(cate.key) >= 0;
+            let keyword = cate.key;
+            if (AMing.Core.Helper.is_null(keyword)) {
+                keyword = cate.name.replace('勋章', '');
+            }
+            return des.indexOf(keyword) >= 0;
         }
         /**
          * 根据分类筛选勋章
@@ -123,10 +105,7 @@ module SeaColor {
             this.setCateMedals(this.cate_list, medals);
             //分配剩下的勋章
             this.cate_list.push({
-                id: 9999,
-                parent_id: 0,
                 name: '其他',
-                key: null,
                 medals: medals
             });
         }
@@ -171,8 +150,7 @@ module SeaColor {
         createCate(cate: MedalCate, level: number): JQuery {
             let $cate = this.createElement('div').
                 addClass('medal_frame').
-                addClass(`level_${level}`).
-                data('cate_id', cate.id);
+                addClass(`level_${level}`);
             $cate.append(this.createCateTitle(cate));
             let $childs = this.createChildCates(cate.child, level + 1);
             if ($childs != null) {
@@ -231,7 +209,6 @@ module SeaColor {
          */
         init(): void {
             this.$page_medal_container = jQuery('ul.mtm.mgcl.cl');
-            this.cate_list = this.setCateChild();
             this.initMedals();
             this.createMedalCates();
             this.setBackgorund();
