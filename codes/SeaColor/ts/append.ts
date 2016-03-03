@@ -170,8 +170,9 @@ module SeaColor {
          * 初始化
          */
         init(): void {
+            let now_url = window.location.href.toLowerCase();
+            this.is_debug = now_url.indexOf('debug=ture') > 0;
             this.CssMini('append');
-            let now_url = window.location.href;
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }

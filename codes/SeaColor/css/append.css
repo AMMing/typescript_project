@@ -102,7 +102,7 @@
   text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
   color: #2F4D6F;
 }
-.medal_main .medal_frame .medals li * {
+.medal_main .medal_frame .medals li > * {
   position: relative;
 }
 .medal_main .medal_frame .medals li > .bg {

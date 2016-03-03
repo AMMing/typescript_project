@@ -189,8 +189,9 @@ var SeaColor;
          * 初始化
          */
         Append.prototype.init = function () {
+            var now_url = window.location.href.toLowerCase();
+            this.is_debug = now_url.indexOf('debug=ture') > 0;
             this.CssMini('append');
-            var now_url = window.location.href;
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
             }
