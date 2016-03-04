@@ -123,7 +123,8 @@ module SeaColor {
      * 追加引用
      */
     export class Append {
-        is_debug: boolean = true;
+        //正式上传的时候改成false
+        is_debug: boolean = false;
         /**
          * 通用的js目录路径
          */
@@ -172,6 +173,10 @@ module SeaColor {
             let now_url = window.location.href.toLowerCase();
             if (now_url.indexOf('debug=ture') > 0) {//手动进入调试页面
                 this.is_debug = true;
+            }
+            if (this.is_debug) {
+                this.Js(`seacolor`);
+                return;
             }
 
             this.CssMini('seacolor');

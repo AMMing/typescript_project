@@ -143,7 +143,8 @@ var SeaColor;
      */
     var Append = (function () {
         function Append() {
-            this.is_debug = true;
+            //正式上传的时候改成false
+            this.is_debug = false;
             /**
              * 通用的js目录路径
              */
@@ -192,6 +193,10 @@ var SeaColor;
             var now_url = window.location.href.toLowerCase();
             if (now_url.indexOf('debug=ture') > 0) {
                 this.is_debug = true;
+            }
+            if (this.is_debug) {
+                this.Js("seacolor");
+                return;
             }
             this.CssMini('seacolor');
             if (jQuery('#f_pst,#postbox').length > 0) {
