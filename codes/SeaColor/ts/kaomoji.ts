@@ -119,7 +119,7 @@ module SeaColor {
          * 创建编辑器上面的按钮
          */
         createButton(): JQuery {
-            return jQuery('<a id="e_current_sml" title="颜文字" href="javascript:;" initialized="true">颜文字</a>').
+            return jQuery('<a id="e_current_sml" class="kaomoji" title="颜文字" href="javascript:;" initialized="true">颜文字</a>').
                 css({
                     backgroundPosition: '-3px -80px'
                 });
@@ -128,7 +128,7 @@ module SeaColor {
          * 创建迷你编辑器上面的按钮
          */
         createMiniBtn(): JQuery {
-            return jQuery('<a href="javascript:;" class="fsml mini_btn_sml" fwin="reply">颜文字</a>').
+            return jQuery('<a href="javascript:;" class="fsml mini_btn_sml kaomoji" fwin="reply">颜文字</a>').
                 css({
                     backgroundPosition: '-20px -20px'
                 });

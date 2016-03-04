@@ -128,7 +128,7 @@ module SeaColor {
         /**
          * 通用的js目录路径
          */
-        path: string = '/template/SeaColor/';
+        path: string = '/seacolor/';
         debug_path: string = 'http://ts.amoe.me/seacolor/';
         getFileUrl(name: string): string {
             let url = `${this.path}${name}`;
@@ -189,4 +189,4 @@ module SeaColor {
         }
     }
 }
-(new SeaColor.Append()).init();
+$(() => (new SeaColor.Append()).init());

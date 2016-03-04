@@ -148,7 +148,7 @@ var SeaColor;
             /**
              * 通用的js目录路径
              */
-            this.path = '/template/SeaColor/';
+            this.path = '/seacolor/';
             this.debug_path = 'http://ts.amoe.me/seacolor/';
         }
         Append.prototype.getFileUrl = function (name) {
@@ -210,5 +210,5 @@ var SeaColor;
     }());
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
-(new SeaColor.Append()).init();
+$(function () { return (new SeaColor.Append()).init(); });
 //# sourceMappingURL=seacolor.js.map
