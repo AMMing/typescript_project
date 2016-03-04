@@ -45,7 +45,7 @@
 }
 .medal_main .medal_frame .title > .bg,
 .medal_main .medal_frame .medals li > .bg_bak {
-  background: url('http://amoe.me/images/pixiv47503045.jpg');
+  background: url('/seacolor/images/medal_cate_bg.jpg');
   background-size: 990px;
   width: 100%;
   height: 100%;
