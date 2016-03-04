@@ -28,7 +28,6 @@ module SeaColor {
         cate_list: MedalCate[] = [
             {
                 name: '发放中',
-                key: '~',
                 child: [
                     { name: '活动勋章' },
                     { name: '节日勋章' },
@@ -44,7 +43,7 @@ module SeaColor {
                 ]
             }, {
                 name: '已绝版',
-                key: '1',
+                key: '绝版',
                 child: [
                     { name: '活动勋章' },
                     { name: '节日勋章' },
@@ -58,6 +57,8 @@ module SeaColor {
                     { name: '作死勋章' },
                     { name: '杂项' }
                 ]
+            }, {
+                name: '工作组勋章'
             }
         ];
         $page_medal_container: JQuery;
@@ -71,8 +72,6 @@ module SeaColor {
             if (!keyword) {
                 keyword = cate.name.replace('勋章', '');
             }
-            console.log(keyword);
-            console.log(des);
             return des.indexOf(keyword) >= 0;
         }
         /**
@@ -109,7 +108,7 @@ module SeaColor {
             this.setCateMedals(this.cate_list, medals);
             //分配剩下的勋章
             this.cate_list.push({
-                name: '其他',
+                name: '准备中',
                 medals: medals
             });
         }
@@ -127,16 +126,29 @@ module SeaColor {
 
             return $title;
         }
-        createChildCates(cates: MedalCate[], level: number): JQuery {
+        createChildCates(cates: MedalCate[], level: number): { items: JQuery, show: boolean } {
             if (cates == null || cates.length <= 0) return null;
 
             let $div = this.createElement('div').addClass('child');
+            let show = false;
             for (let i = 0; i < cates.length; i++) {
                 let item = cates[i];
-                $div.append(this.createCate(item, level));
+                let newdata = this.createCate(item, level);
+                $div.append(newdata.item);
+                if (newdata.show) {
+                    show = true;
+                }
             }
 
-            return $div;
+            return {
+                items: $div,
+                show: show
+            };
+        }
+        setMedalItem($item: JQuery): void {
+            if ($item.find('.xi2').length <= 0) {
+                $item.addClass('disable');
+            }
         }
         createMedals(medals: JQuery[]): JQuery {
             if (medals == null || medals.length <= 0) return null;
@@ -146,37 +158,47 @@ module SeaColor {
             let $li = jQuery('<li></li>');
             for (let i = 0; i < medals.length; i++) {
                 let item = medals[i];
+                this.setMedalItem(item);
                 $ul.append(item);
             }
 
             return $ul;
         }
-        createCate(cate: MedalCate, level: number): JQuery {
+        createCate(cate: MedalCate, level: number): { item: JQuery, show: boolean } {
+            let show = false;
             let $cate = this.createElement('div').
                 addClass('medal_frame').
                 addClass(`level_${level}`);
             $cate.append(this.createCateTitle(cate));
-            let $childs = this.createChildCates(cate.child, level + 1);
-            if ($childs != null) {
-                $cate.append($childs);
+            let childdata = this.createChildCates(cate.child, level + 1);
+            if (childdata != null) {
+                $cate.append(childdata.items);
+                if (childdata.show) {
+                    show = true;
+                }
             }
             let $medals = this.createMedals(cate.medals);
             if ($medals != null) {
                 $cate.append($medals);
-                //包含勋章的时候显示自己和通知父级分类
+                show = true;
+            }
+            if (show) {
                 $cate.addClass('show');
-                $cate.parents('.medal_frame').addClass('show');
             }
             $cate.append(this.createClear());
 
-            return $cate;
+            return {
+                item: $cate,
+                show: show
+            };
         }
 
         createMedalCates() {
             let $div = this.createElement('div').addClass('medal_main');
             for (let i = 0; i < this.cate_list.length; i++) {
                 let item = this.cate_list[i];
-                $div.append(this.createCate(item, 1));
+                let newdata = this.createCate(item, 1);
+                $div.append(newdata.item);
             }
             this.$medal_container = $div;
             this.$page_medal_container.empty();
@@ -189,7 +211,7 @@ module SeaColor {
         }
         setBackgorund(): void {
             this.origin_position = this.$medal_container.offset();
-            jQuery('.medals li').prepend(this.createElement('div').addClass('bg'));
+            // jQuery('.medals li').prepend(this.createElement('div').addClass('bg'));//勋章items
             let $items = jQuery('.medals li>.bg,.medal_frame .title >.bg');
             $items.each((i, x) => this.setBackgorundPosition(jQuery(x)));
         }

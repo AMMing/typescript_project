@@ -82,7 +82,7 @@
                 cursor: pointer;
                 margin-top: 0;
                 margin-right: 0;
-                width: 180px;
+                width: 176px;
                 
                 .mg_img {
                     width: auto;
@@ -107,7 +107,7 @@
                         line-height: 50px;
                         margin-left: 0;
                         font-size: 14px;
-                        width: 120px;
+                        // width: 115px;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
@@ -122,6 +122,14 @@
                 & > .bg{
                     position: absolute;
                 }
+                &.disable{
+                    background: #ececec;
+                    cursor:auto;
+                    
+                    .tip{
+                        background: #ececec;
+                    }
+                }
                 .tip{
                     position: absolute;
                     top: 50px;
@@ -130,6 +138,7 @@
                     padding: 0;
                     z-index: 99;
                     border: 1px solid #fff;
+                    border-top-width: 0;
                     background: #fff;
                     box-shadow: rgba(0, 0, 0, 0.4) 2px 5px 8px;
                     border-radius: 8px;
@@ -158,7 +167,15 @@
     // 多级分类背景样式
     .cate_level(@lv){
         .level_@{lv} > .title > .bg {
-            background-position: (-1 * (@lv - 1) * 20)px (-1 *(@lv - 1) * 60)px;
+            background-position: (-1px * (@lv - 1) * 20) (-1px *(@lv - 1) * 60);
+            
+        }
+        .level_@{lv} > .medals li{
+            @item_w:(((990px - @lv * 20) /5) - 14);
+            width: @item_w;
+            .xw1{
+                width: (@item_w - 60);
+            }
         }
     }
     .cate_level(1);

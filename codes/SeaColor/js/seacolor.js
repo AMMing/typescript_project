@@ -190,7 +190,9 @@ var SeaColor;
          */
         Append.prototype.init = function () {
             var now_url = window.location.href.toLowerCase();
-            this.is_debug = now_url.indexOf('debug=ture') > 0; //手动进入调试页面
+            if (now_url.indexOf('debug=ture') > 0) {
+                this.is_debug = true;
+            }
             this.CssMini('seacolor');
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
