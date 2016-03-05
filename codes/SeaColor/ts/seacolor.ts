@@ -187,10 +187,21 @@ module SeaColor {
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }
-            if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
-                this.JsMini('medal');
-                this.JsMini('lib/jquery.cookie', () => this.JsMini('version'));
-            }
+            //需要经过配置的项
+            
+            this.JsMini('lib/jquery.cookie', () =>
+                this.JsMini('settings', () => {
+                    //加载完配置才加载这些
+                    if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
+                        if (seaColor_Settings.data.medal) {
+                            this.JsMini('medal');
+                        }
+                    }
+                })
+            );
+
+
+
         }
     }
 }

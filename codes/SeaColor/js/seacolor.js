@@ -163,15 +163,17 @@ var SeaColor;
          * 引用js文件
          * @param name 文件名
          */
-        Append.prototype.Js = function (name) {
-            AMing.Core.Helper.append_js(this.getFileUrl("js/" + name + ".js"));
+        Append.prototype.Js = function (name, onload_func) {
+            if (onload_func === void 0) { onload_func = null; }
+            AMing.Core.Helper.append_js(this.getFileUrl("js/" + name + ".js"), onload_func);
         };
         /**
          * 引用min.js文件
          * @param name 文件名
          */
-        Append.prototype.JsMini = function (name) {
-            this.Js("" + name + (this.is_debug ? '' : '.min'));
+        Append.prototype.JsMini = function (name, onload_func) {
+            if (onload_func === void 0) { onload_func = null; }
+            this.Js("" + name + (this.is_debug ? '' : '.min'), onload_func);
         };
         /**
          * 引用css文件
@@ -191,6 +193,7 @@ var SeaColor;
          * 初始化
          */
         Append.prototype.init = function (debug) {
+            var _this = this;
             if (debug === void 0) { debug = false; }
             var now_url = window.location.href.toLowerCase();
             if (now_url.indexOf('close=true') > 0) {
@@ -209,6 +212,7 @@ var SeaColor;
             }
             if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {
                 this.JsMini('medal');
+                this.JsMini('lib/jquery.cookie', function () { return _this.JsMini('version'); });
             }
         };
         return Append;
