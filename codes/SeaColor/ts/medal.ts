@@ -146,7 +146,9 @@ module SeaColor {
             };
         }
         setMedalItem($item: JQuery): void {
-            if ($item.find('.xi2').length <= 0) {
+            if ($item.find('p:contains("已拥有")').length > 0) {
+                $item.addClass('hold');
+            } else if ($item.find('.xi2').length <= 0) {
                 $item.addClass('disable');
             }
         }

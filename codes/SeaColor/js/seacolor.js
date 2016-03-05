@@ -136,6 +136,7 @@ var AMing;
         Core.Helper = Helper;
     })(Core = AMing.Core || (AMing.Core = {}));
 })(AMing || (AMing = {}));
+var is_reload = !!window['SeaColor'];
 var SeaColor;
 (function (SeaColor) {
     /**
@@ -189,12 +190,16 @@ var SeaColor;
         /**
          * 初始化
          */
-        Append.prototype.init = function () {
+        Append.prototype.init = function (debug) {
+            if (debug === void 0) { debug = false; }
             var now_url = window.location.href.toLowerCase();
-            if (now_url.indexOf('debug=ture') > 0) {
+            if (now_url.indexOf('close=true') > 0) {
+                return;
+            }
+            if (debug || now_url.indexOf('debug=true') > 0) {
                 this.is_debug = true;
             }
-            if (this.is_debug) {
+            if (!debug && this.is_debug) {
                 this.Js("seacolor");
                 return;
             }
@@ -210,5 +215,10 @@ var SeaColor;
     }());
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
-$(function () { return (new SeaColor.Append()).init(); });
+if (is_reload) {
+    (new SeaColor.Append()).init(true);
+}
+else {
+    $(function () { return (new SeaColor.Append()).init(true); });
+}
 //# sourceMappingURL=seacolor.js.map

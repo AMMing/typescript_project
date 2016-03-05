@@ -12,6 +12,8 @@
 @bg_name:'medal_cate_bg.jpg';
 // 模糊值
 @blur_val:2px;
+
+@text_shadow_val:2px;
  
 .medal_main{
     .medal_frame{
@@ -55,8 +57,9 @@
             border: 1px solid #fff;
             cursor: pointer;
         }
-        .title:hover, .medals li:hover {
-            box-shadow: rgba(9, 50, 167, 0.4) 2px 2px 8px;
+        // .title:hover, 
+        .medals li:not(.disable):hover {
+            box-shadow: rgba(9, 50, 167, 0.8) 2px 2px 8px;
         }
         .title > .bg, .medals li >.bg_bak {
             background: url('@{img_url}/images/@{bg_name}');
@@ -67,9 +70,11 @@
             left: 0;
             top: 0;
             opacity: 0.6;
+            
             -webkit-filter: blur(@blur_val);
             -ms-filter: blur(@blur_val);
             filter: blur(@blur_val);
+            filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5,MakeShadow=false);
         }
         .child {
             margin-left: 20px;
@@ -114,7 +119,7 @@
                         text-overflow: ellipsis;
                         overflow: hidden;
                         font-weight: normal;
-                        text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
+                        text-shadow: rgba(35, 102, 171, 0.6) 0 0 @text_shadow_val;
                         color: #2F4D6F;
                     }
                 }
@@ -124,12 +129,20 @@
                 & > .bg{
                     position: absolute;
                 }
-                &.disable{
-                    background: #ececec;
+                &.hold{
+                    background: #ABFF9D;
                     cursor:auto;
                     
                     .tip{
-                        background: #ececec;
+                        background: #ABFF9D;
+                    }
+                }
+                &.disable{
+                    background: #ccc;
+                    cursor:auto;
+                    
+                    .tip{
+                        background: #ccc;
                     }
                 }
                 .tip{
@@ -151,12 +164,12 @@
                         margin: 15px 10px;
                         font-size: 12px;
                         color: #2182D8;
-                        text-shadow: rgba(11,106,187,0.7) 0 0 5px;
+                        text-shadow: rgba(11,106,187,0.7) 0 0 @text_shadow_val;
                             
                         .mtn{
                             text-align: right;
                             color: #D85521;
-                            text-shadow: rgba(224, 99, 40, 0.7) 0 0 5px;
+                            text-shadow: rgba(224, 99, 40, 0.7) 0 0 @text_shadow_val;
                         }
                     }
                     .tip_horn{

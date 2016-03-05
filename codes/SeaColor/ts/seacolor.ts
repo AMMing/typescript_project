@@ -118,6 +118,7 @@ module AMing.Core {
         }
     }
 }
+let is_reload = !!window['SeaColor'];
 module SeaColor {
     /**
      * 追加引用
@@ -142,15 +143,15 @@ module SeaColor {
          * 引用js文件
          * @param name 文件名
          */
-        Js(name: string): void {
-            AMing.Core.Helper.append_js(this.getFileUrl(`js/${name}.js`));
+        Js(name: string, onload_func: any = null): void {
+            AMing.Core.Helper.append_js(this.getFileUrl(`js/${name}.js`), onload_func);
         }
         /**
          * 引用min.js文件
          * @param name 文件名
          */
-        JsMini(name: string): void {
-            this.Js(`${name}${this.is_debug ? '' : '.min'}`);
+        JsMini(name: string, onload_func: any = null): void {
+            this.Js(`${name}${this.is_debug ? '' : '.min'}`, onload_func);
         }
         /**
          * 引用css文件
@@ -169,12 +170,15 @@ module SeaColor {
         /**
          * 初始化
          */
-        init(): void {
+        init(debug: boolean = false): void {
             let now_url = window.location.href.toLowerCase();
-            if (now_url.indexOf('debug=ture') > 0) {//手动进入调试页面
+            if (now_url.indexOf('close=true') > 0) {
+                return;
+            }
+            if (debug || now_url.indexOf('debug=true') > 0) {//手动进入调试页面
                 this.is_debug = true;
             }
-            if (this.is_debug) {
+            if (!debug && this.is_debug) {
                 this.Js(`seacolor`);
                 return;
             }
@@ -185,8 +189,14 @@ module SeaColor {
             }
             if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
                 this.JsMini('medal');
+                this.JsMini('lib/jquery.cookie', () => this.JsMini('version'));
             }
         }
     }
 }
-$(() => (new SeaColor.Append()).init());
+
+if (is_reload) {
+    (new SeaColor.Append()).init(true);
+} else {
+    $(() => (new SeaColor.Append()).init(true));
+}
