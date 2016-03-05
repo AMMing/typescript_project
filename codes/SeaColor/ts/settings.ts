@@ -11,7 +11,7 @@ module SeaColor {
         };
         cookie_key: string = 'SeaColor.Settings';
         getValue(key: string, default_val: string): string {
-            var val = jQuery.cookie(`${this.cookie_key}_${key}`);
+            let val = jQuery.cookie(`${this.cookie_key}_${key}`);
             if (val == null) {
                 return default_val;
             }
@@ -19,21 +19,27 @@ module SeaColor {
             return val;
         }
         setValue(key: string, value: string): void {
-            jQuery.cookie(`${this.cookie_key}_${key}`, value);
+            jQuery.cookie(`${this.cookie_key}_${key}`, value, { expires: 999 });
         }
 
         initSetting(): void {
-            for (var key in this.data) {
+            for (let key in this.data) {
                 if (this.data.hasOwnProperty(key)) {
-                    var item = this.data[key];
-                    this.data[key] = this.getValue(key, item);
+                    let item = this.data[key];
+                    let type = typeof item;
+                    let newval = this.getValue(key, item);
+                    if (type == 'boolean') {
+                        item = newval == 'true';
+                    }
+
+                    this.data[key] = item;
                 }
             }
         }
         saveSetting(): void {
-            for (var key in this.data) {
+            for (let key in this.data) {
                 if (this.data.hasOwnProperty(key)) {
-                    var item = this.data[key];
+                    let item = this.data[key];
                     this.setValue(key, item);
                 }
             }
@@ -43,5 +49,5 @@ module SeaColor {
         }
     }
 }
-var seaColor_Settings = new SeaColor.Settings();
+let seaColor_Settings = new SeaColor.Settings();
 seaColor_Settings.init();

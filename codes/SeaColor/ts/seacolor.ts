@@ -193,6 +193,7 @@ module SeaColor {
                 this.JsMini('settings', () => {
                     //加载完配置才加载这些
                     if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
+                            this.JsMini('medal_btn');
                         if (seaColor_Settings.data.medal) {
                             this.JsMini('medal');
                         }
