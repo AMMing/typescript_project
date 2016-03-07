@@ -172,6 +172,8 @@ module SeaColor {
          */
         init(debug: boolean = false): void {
             let now_url = window.location.href.toLowerCase();
+            let now_url_path = window.location.pathname.toLowerCase();
+
             if (now_url.indexOf('close=true') > 0) {
                 return;
             }
@@ -193,7 +195,7 @@ module SeaColor {
                 this.JsMini('settings', () => {
                     //加载完配置才加载这些
                     if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {//是勋章页才加载js
-                            this.JsMini('medal_btn');
+                        this.JsMini('medal_btn');
                         if (seaColor_Settings.data.medal) {
                             this.JsMini('medal');
                         }
@@ -201,7 +203,16 @@ module SeaColor {
                 })
             );
 
-
+            this.JsMini('lib/linq', () =>
+                this.JsMini('lib/jquery.linq', () => {
+                    if (now_url_path.indexOf('forum-') == 0) {//是勋章页才加载js
+                        this.JsMini('forum');
+                        // if (seaColor_Settings.data.medal) {
+                        //     this.JsMini('medal');
+                        // }
+                    }
+                })
+            );
 
         }
     }
