@@ -1,5 +1,4 @@
 let is_reload = !!window['SeaColor'] && !!window['SeaColor']['Append'];
-debugger;
 module SeaColor {
     /**
      * 追加引用
@@ -70,7 +69,7 @@ module SeaColor {
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }
-            if (now_url_path.indexOf('forum-') == 0) {//是论坛列表页才加载js
+            if (now_url_path.indexOf('forum-') == 1) {//是论坛列表页才加载js
                 this.JsMini('forum');
             }
             //需要经过配置的项
@@ -90,7 +89,7 @@ module SeaColor {
 
 if (is_reload) {
     let append = new SeaColor.Append();
-    append.JsMini('lib', () => append.init(true));
+    AMing.Core.Helper.append_js(`${append.debug_path}js/lib.min.js`, () => append.init(true));
 } else {
-    $(() => (new SeaColor.Append()).init(true));
+    $(() => (new SeaColor.Append()).init());
 }

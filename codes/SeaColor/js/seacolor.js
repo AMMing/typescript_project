@@ -1,5 +1,4 @@
 var is_reload = !!window['SeaColor'] && !!window['SeaColor']['Append'];
-debugger;
 var SeaColor;
 (function (SeaColor) {
     /**
@@ -74,7 +73,7 @@ var SeaColor;
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
             }
-            if (now_url_path.indexOf('forum-') == 0) {
+            if (now_url_path.indexOf('forum-') == 1) {
                 this.JsMini('forum');
             }
             //需要经过配置的项
@@ -94,9 +93,9 @@ var SeaColor;
 })(SeaColor || (SeaColor = {}));
 if (is_reload) {
     var append = new SeaColor.Append();
-    append.JsMini('lib', function () { return append.init(true); });
+    AMing.Core.Helper.append_js(append.debug_path + "js/lib.min.js", function () { return append.init(true); });
 }
 else {
-    $(function () { return (new SeaColor.Append()).init(true); });
+    $(function () { return (new SeaColor.Append()).init(); });
 }
 //# sourceMappingURL=seacolor.js.map

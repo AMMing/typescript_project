@@ -6,15 +6,14 @@
 /// <reference path="../jquery/jquery.d.ts"/>
 /// <reference path="linq.d.ts"/>
 
-declare module linqjs {
-    interface Enumerable {
-        tojQuery(): JQuery;
-        tojQueryAsArray(): JQuery;
+declare module linq {
+    interface Enumerable<T> {
+        TojQuery(): JQuery;
     }
 }
 
 interface JQuery {
-    toEnumerable(): linqjs.Enumerable;
+    toEnumerable(): linq.Enumerable<JQuery>;
 }
 
 interface JQueryStatic {
