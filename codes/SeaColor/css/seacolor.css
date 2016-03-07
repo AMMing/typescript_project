@@ -1,3 +1,20 @@
+.seacolor.button {
+  padding: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  text-shadow: rgba(35, 102, 171, 0.6) 0 0 2px;
+  color: #2F4D6F;
+}
+.seacolor.button.medal_btn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.seacolor.button:hover {
+  box-shadow: rgba(35, 102, 171, 0.6) 2px 2px 8px;
+}
 /*  勋章页面样式
 *   update date 2016.03.02 by AMing
 */
@@ -39,9 +56,8 @@
   border: 1px solid #fff;
   cursor: pointer;
 }
-.medal_main .medal_frame .title:hover,
-.medal_main .medal_frame .medals li:hover {
-  box-shadow: rgba(9, 50, 167, 0.4) 2px 2px 8px;
+.medal_main .medal_frame .medals li:not(.disable):hover {
+  box-shadow: rgba(9, 50, 167, 0.8) 2px 2px 8px;
 }
 .medal_main .medal_frame .title > .bg,
 .medal_main .medal_frame .medals li > .bg_bak {
@@ -56,6 +72,7 @@
   -webkit-filter: blur(2px);
   -ms-filter: blur(2px);
   filter: blur(2px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=2, MakeShadow=false);
 }
 .medal_main .medal_frame .child {
   margin-left: 20px;
@@ -98,7 +115,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   font-weight: normal;
-  text-shadow: rgba(35, 102, 171, 0.6) 0 0 4px;
+  text-shadow: rgba(35, 102, 171, 0.6) 0 0 2px;
   color: #2F4D6F;
 }
 .medal_main .medal_frame .medals li > * {
@@ -107,12 +124,19 @@
 .medal_main .medal_frame .medals li > .bg {
   position: absolute;
 }
+.medal_main .medal_frame .medals li.hold {
+  background: #ABFF9D;
+  cursor: auto;
+}
+.medal_main .medal_frame .medals li.hold .tip {
+  background: #ABFF9D;
+}
 .medal_main .medal_frame .medals li.disable {
-  background: #ececec;
+  background: #ccc;
   cursor: auto;
 }
 .medal_main .medal_frame .medals li.disable .tip {
-  background: #ececec;
+  background: #ccc;
 }
 .medal_main .medal_frame .medals li .tip {
   position: absolute;
@@ -133,12 +157,12 @@
   margin: 15px 10px;
   font-size: 12px;
   color: #2182D8;
-  text-shadow: rgba(11, 106, 187, 0.7) 0 0 5px;
+  text-shadow: rgba(11, 106, 187, 0.7) 0 0 2px;
 }
 .medal_main .medal_frame .medals li .tip .tip_c .mtn {
   text-align: right;
   color: #D85521;
-  text-shadow: rgba(224, 99, 40, 0.7) 0 0 5px;
+  text-shadow: rgba(224, 99, 40, 0.7) 0 0 2px;
 }
 .medal_main .medal_frame .medals li .tip .tip_horn {
   display: none;

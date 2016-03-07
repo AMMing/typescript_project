@@ -210,10 +210,18 @@ var SeaColor;
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
             }
-            if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {
-                this.JsMini('medal');
-                this.JsMini('lib/jquery.cookie', function () { return _this.JsMini('version'); });
-            }
+            //需要经过配置的项
+            this.JsMini('lib/jquery.cookie', function () {
+                return _this.JsMini('settings', function () {
+                    //加载完配置才加载这些
+                    if (now_url.indexOf('mod=medal') > 0 && now_url.indexOf('action=log') < 0) {
+                        _this.JsMini('medal_btn');
+                        if (seaColor_Settings.data.medal) {
+                            _this.JsMini('medal');
+                        }
+                    }
+                });
+            });
         };
         return Append;
     }());
