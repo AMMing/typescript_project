@@ -229,7 +229,7 @@ var SeaColor;
             setTimeout(function () { return _this.setBackgorund(); }, 300);
         };
         return Medal;
-    }());
+    })();
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();

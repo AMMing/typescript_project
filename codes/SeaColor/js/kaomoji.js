@@ -391,7 +391,7 @@ var SeaColor;
             this.bindReplayShowEvent();
         };
         return Kaomoji;
-    }());
+    })();
     SeaColor.Kaomoji = Kaomoji;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Kaomoji()).init();
