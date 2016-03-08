@@ -63,7 +63,7 @@ module AMing.Core {
 		 */
         static append_jquery(ready: any = null): void {
             let jqload = () => {
-                jQuery(document).ready(jq=> this.call_func(ready));
+                jQuery(document).ready(jq => this.call_func(ready));
             };
             if (!window['jQuery']) {
                 this.append_js(this.jq_url, jqload);
@@ -105,6 +105,31 @@ module AMing.Core {
 		 */
         static is_null_or_space(value: string): boolean {
             return this.is_null(value) || value.trim() == '';
+        }
+    }
+}
+
+module SeaColor {
+    export class Helper {
+
+        static createElement(tag: string, ...classnames: Array<string>): JQuery {
+            let $item = jQuery(`<${tag}></${tag}>`);
+            classnames.forEach(x => $item.addClass(x));
+
+            return $item;
+        }
+        static createLink(url: string, text: string, ...classnames: Array<string>): JQuery {
+            let $a = this.createElement('a').text(text);
+            classnames.forEach(x => $a.addClass(x));
+
+            return $a;
+        }
+        static createImage(url: string, load_func?: (ev: Event) => any): JQuery {
+            let img = new Image();
+            img.src = url;
+            img.onload = load_func;
+
+            return jQuery(img);
         }
     }
 }

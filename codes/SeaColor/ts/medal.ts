@@ -112,24 +112,24 @@ module SeaColor {
                 medals: medals
             });
         }
-        createElement(tag: string): JQuery {
-            return jQuery('<' + tag + '></' + tag + '>');
-        }
+        // createElement(tag: string): JQuery {
+        //     return jQuery('<' + tag + '></' + tag + '>');
+        // }
         createClear(): JQuery {
-            return this.createElement('div').addClass('clear');
+            return Helper.createElement('div').addClass('clear');
         }
 
         createCateTitle(cate: MedalCate): JQuery {
-            let $title = this.createElement('div').addClass('title');
-            $title.append(this.createElement('div').addClass('bg'));
-            $title.append(this.createElement('h5').text(cate.name));
+            let $title = Helper.createElement('div').addClass('title');
+            $title.append(Helper.createElement('div').addClass('bg'));
+            $title.append(Helper.createElement('h5').text(cate.name));
 
             return $title;
         }
         createChildCates(cates: MedalCate[], level: number): { items: JQuery, show: boolean } {
             if (cates == null || cates.length <= 0) return null;
 
-            let $div = this.createElement('div').addClass('child');
+            let $div = Helper.createElement('div').addClass('child');
             let show = false;
             for (let i = 0; i < cates.length; i++) {
                 let item = cates[i];
@@ -155,7 +155,7 @@ module SeaColor {
         createMedals(medals: JQuery[]): JQuery {
             if (medals == null || medals.length <= 0) return null;
 
-            let $ul = this.createElement('ul').
+            let $ul = Helper.createElement('ul').
                 addClass('medals');
             let $li = jQuery('<li></li>');
             for (let i = 0; i < medals.length; i++) {
@@ -168,7 +168,7 @@ module SeaColor {
         }
         createCate(cate: MedalCate, level: number): { item: JQuery, show: boolean } {
             let show = false;
-            let $cate = this.createElement('div').
+            let $cate = Helper.createElement('div').
                 addClass('medal_frame').
                 addClass(`level_${level}`);
             $cate.append(this.createCateTitle(cate));
@@ -196,7 +196,7 @@ module SeaColor {
         }
 
         createMedalCates() {
-            let $div = this.createElement('div').addClass('medal_main');
+            let $div = Helper.createElement('div').addClass('medal_main');
             for (let i = 0; i < this.cate_list.length; i++) {
                 let item = this.cate_list[i];
                 let newdata = this.createCate(item, 1);
@@ -228,13 +228,13 @@ module SeaColor {
                 let $this = jQuery(e.currentTarget);
                 $this.find('.tip').show();
             });
-            $medals.mouseout(e=> this.hideAllMedalTip());
-            $medals.click(e=> {
+            $medals.mouseout(e => this.hideAllMedalTip());
+            $medals.click(e => {
                 let $this = jQuery(e.currentTarget);
                 $this.find('.xi2').trigger('click');
             });
         }
-        
+
         /**
          * 初始化
          */

@@ -26,19 +26,15 @@ module SeaColor {
         last_comment_url?: string;
     }
     /**
-     * 论坛列表
+     * 论坛列表数据
      */
-    export class Forum {
-        constructor() {
-            let topic_list = this.getAllNewItem();
-            topic_list.forEach(x=> console.log(x));
-        }
-        getUserInfo($item: JQuery): User {
+    export class ForumData {
+        private getUserInfo($item: JQuery): User {
             return {
                 name: $item.find('a').text()
             };
         }
-        getTopic($item: JQuery): Topic {
+        private getTopic($item: JQuery): Topic {
             let $title = $item.find('a.s.xst');
             let $last_comment = $item.find('.by:last a');
             let topic: Topic = {
@@ -60,17 +56,74 @@ module SeaColor {
             return topic;
         }
 
-        getNewItem($item: JQuery): Topic {
+        private getTopicItem($item: JQuery): Topic {
             return this.getTopic($item);
         }
-        getAllItem(): JQuery {
+        private getAllItem(): JQuery {
             return jQuery('#threadlisttableid tbody');
         }
-        getAllNewItem(): Topic[] {
+        public getAllTopicItem(): Array<Topic> {
             let $items = this.getAllItem();
             return $items.toEnumerable().
-                Select(x=> this.getNewItem(x)).
+                Select(x => this.getTopicItem(x)).
                 ToArray();
+        }
+    }
+
+    export class Forum {
+        data: ForumData = new ForumData();
+        topic_list: Array<Topic> = [];
+
+        createItem(topic: Topic): JQuery {
+            if (!topic || !topic.title || !topic.url) {
+                return null;
+            }
+
+            return Helper.createElement('div', 'item').
+                append(Helper.createElement('div', 'left').
+                    append(Helper.createElement('div', 'bg')).//背景
+                    append(Helper.createElement('h4').//标题
+                        append(Helper.createLink(topic.url, topic.title))
+                    ).
+                    append(Helper.createElement('h5').//内容
+                        append(Helper.createLink(topic.url, topic.des))
+                    )
+                ).
+                append(Helper.createElement('div', 'right').
+                    append(Helper.createElement('div', 'info').//信息
+                        append(Helper.createElement('div', 'count').//查看数
+                            append(Helper.createElement('p', 'view').text(topic.view_count)).
+                            append(Helper.createElement('p', 'comment').text(topic.comment_count))
+                        ).
+                        append(Helper.createElement('div', 'date').//时间
+                            append(Helper.createElement('p').text(topic.date)).
+                            append(Helper.createElement('p').text(topic.date_text))
+                        )
+                    ).
+                    append(Helper.createElement('div', 'user').//楼主信息
+                        append(Helper.createImage(topic.host.icon)).
+                        append(Helper.createElement('div').text(topic.host.name))
+                    )
+                );
+        }
+        createList(list: Array<Topic>): JQuery {
+            return Helper.createElement('div', 'topic_list').
+                append(Enumerable.From(list).
+                    Select(x => this.createItem(x)).
+                    Where(x => !!x).
+                    TojQuery()
+                );
+        }
+        rebuild(): void {
+            let $body = jQuery('body');
+            $body.empty().append(
+                Helper.createElement('div', 'main_content', 'forum').
+                    append(this.createList(this.topic_list))//添加列表
+            );
+        }
+        init(): void {
+            this.topic_list = this.data.getAllTopicItem();
+            this.rebuild();
         }
     }
 }
