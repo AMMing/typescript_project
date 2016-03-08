@@ -98,22 +98,22 @@ var SeaColor;
                 medals: medals
             });
         };
-        Medal.prototype.createElement = function (tag) {
-            return jQuery('<' + tag + '></' + tag + '>');
-        };
+        // createElement(tag: string): JQuery {
+        //     return jQuery('<' + tag + '></' + tag + '>');
+        // }
         Medal.prototype.createClear = function () {
-            return this.createElement('div').addClass('clear');
+            return SeaColor.Helper.createElement('div').addClass('clear');
         };
         Medal.prototype.createCateTitle = function (cate) {
-            var $title = this.createElement('div').addClass('title');
-            $title.append(this.createElement('div').addClass('bg'));
-            $title.append(this.createElement('h5').text(cate.name));
+            var $title = SeaColor.Helper.createElement('div').addClass('title');
+            $title.append(SeaColor.Helper.createElement('div').addClass('bg'));
+            $title.append(SeaColor.Helper.createElement('h5').text(cate.name));
             return $title;
         };
         Medal.prototype.createChildCates = function (cates, level) {
             if (cates == null || cates.length <= 0)
                 return null;
-            var $div = this.createElement('div').addClass('child');
+            var $div = SeaColor.Helper.createElement('div').addClass('child');
             var show = false;
             for (var i = 0; i < cates.length; i++) {
                 var item = cates[i];
@@ -139,7 +139,7 @@ var SeaColor;
         Medal.prototype.createMedals = function (medals) {
             if (medals == null || medals.length <= 0)
                 return null;
-            var $ul = this.createElement('ul').
+            var $ul = SeaColor.Helper.createElement('ul').
                 addClass('medals');
             var $li = jQuery('<li></li>');
             for (var i = 0; i < medals.length; i++) {
@@ -151,7 +151,7 @@ var SeaColor;
         };
         Medal.prototype.createCate = function (cate, level) {
             var show = false;
-            var $cate = this.createElement('div').
+            var $cate = SeaColor.Helper.createElement('div').
                 addClass('medal_frame').
                 addClass("level_" + level);
             $cate.append(this.createCateTitle(cate));
@@ -177,7 +177,7 @@ var SeaColor;
             };
         };
         Medal.prototype.createMedalCates = function () {
-            var $div = this.createElement('div').addClass('medal_main');
+            var $div = SeaColor.Helper.createElement('div').addClass('medal_main');
             for (var i = 0; i < this.cate_list.length; i++) {
                 var item = this.cate_list[i];
                 var newdata = this.createCate(item, 1);
@@ -233,4 +233,3 @@ var SeaColor;
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();
-//# sourceMappingURL=medal.js.map

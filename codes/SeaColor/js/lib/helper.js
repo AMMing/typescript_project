@@ -127,4 +127,96 @@ var AMing;
         Core.Helper = Helper;
     })(Core = AMing.Core || (AMing.Core = {}));
 })(AMing || (AMing = {}));
+var SeaColor;
+(function (SeaColor) {
+    var Helper = (function () {
+        function Helper() {
+        }
+        Helper.createElement = function (tag) {
+            var classnames = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                classnames[_i - 1] = arguments[_i];
+            }
+            var $item = jQuery("<" + tag + "></" + tag + ">");
+            classnames.forEach(function (x) { return $item.addClass(x); });
+            return $item;
+        };
+        Helper.createLink = function (url, text) {
+            var classnames = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                classnames[_i - 2] = arguments[_i];
+            }
+            var $a = this.createElement('a').text(text);
+            classnames.forEach(function (x) { return $a.addClass(x); });
+            return $a;
+        };
+        Helper.createImage = function (url, load_func) {
+            var img = new Image();
+            img.src = url;
+            img.onload = load_func;
+            return jQuery(img);
+        };
+        return Helper;
+    })();
+    SeaColor.Helper = Helper;
+})(SeaColor || (SeaColor = {}));
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    }
+    return fmt;
+};
+Date.prototype.addDays = function (d) {
+    this.setDate(this.getDate() + d);
+};
+Date.prototype.addMonths = function (m) {
+    var d = this.getDate();
+    this.setMonth(this.getMonth() + m);
+    if (this.getDate() < d)
+        this.setDate(0);
+};
+String.prototype.getRealLenth = function () {
+    var str = this, rlen = this.length;
+    for (var i = 0, len = rlen; i < len; i++) {
+        if (str.charCodeAt(i) > 127)
+            rlen++;
+    }
+    return rlen;
+};
+String.prototype.getTrimString = function (maxlen, repStr) {
+    maxlen = maxlen || this.getRealLenth();
+    repStr = repStr || "";
+    var rlen = this.getRealLenth(), tarStrArr = [], curlen = repStr.getRealLenth(), curPos = 0;
+    if (rlen <= maxlen)
+        return this;
+    for (var len = this.length; curPos < len; curPos++) {
+        var curChar = this.charAt(curPos), curCode = this.charCodeAt(curPos), curCharLen = curCode > 127 ? 2 : 1;
+        if (curlen + curCharLen <= maxlen) {
+            tarStrArr.push(curChar);
+            curlen += curCharLen;
+        }
+        else {
+            break;
+        }
+    }
+    tarStrArr.push(repStr);
+    return tarStrArr.join("");
+};
+Number.prototype.padLeft = function (length, char) {
+    if (char === void 0) { char = '0'; }
+    return (Array(length).join(char || "0") + this).slice(-length);
+};
 //# sourceMappingURL=helper.js.map

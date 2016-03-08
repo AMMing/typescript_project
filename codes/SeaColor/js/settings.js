@@ -47,4 +47,3 @@ var SeaColor;
 })(SeaColor || (SeaColor = {}));
 var seaColor_Settings = new SeaColor.Settings();
 seaColor_Settings.init();
-//# sourceMappingURL=settings.js.map

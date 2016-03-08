@@ -1,0 +1,90 @@
+//out:false
+/*  论坛列表样式
+*   update date 2016.03.08 by AMing
+*/
+ 
+// 图片域名
+// @img_url:'http://amoe.me';
+// @img_url:'/template/SeaColor';
+@img_url:'/seacolor';
+// 背景图片
+// @bg_name:'pixiv47503045.jpg';
+@bg_name:'medal_cate_bg.jpg';
+// 模糊值
+@blur_val:2px;
+
+@text_shadow_val:2px;
+
+.forum{
+    width: 1200px;
+    margin: 10px auto;
+    
+    .topic_list{
+        width: 1000px;
+        
+        .item{
+            width: 1000px;
+            height: 140px;
+            
+            &>div:first-child{
+                width: 600px;
+                height: 60px;
+                box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+                position: relative;
+                border-radius: 8px;
+                border: 1px solid #fff;
+                cursor: pointer;
+                padding: 10px;
+                float: left;
+                background-color: #fff;
+                
+                &:hover{
+                    box-shadow: rgba(9, 50, 167, 0.8) 2px 2px 8px;
+                }
+                & > *{
+                    position: relative;
+                    z-index: 2;
+                }
+                .bg{
+                    background: url('@{img_url}/images/@{bg_name}');
+                    background-size: 990px;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: 1;
+                    left: 0;
+                    top: 0;
+                    opacity: 0.6;
+                    
+                    -webkit-filter: blur(@blur_val);
+                    -ms-filter: blur(@blur_val);
+                    filter: blur(@blur_val);
+                    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=2,MakeShadow=false);
+                }
+                h4{
+                    font-size: 16px;
+                    
+                }
+            }
+            &>.right{
+                width: 300px;
+                float: left;
+                position: relative;
+                
+                .user{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 60px;
+                    overflow: hidden;
+                    border: 1px solid #fff;
+                    background-color: #fff;
+                    box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+                    position: absolute;
+                    top: -25px;
+                    left: -40px;
+                    z-index: 9;
+                }
+            }
+        }
+    }
+}

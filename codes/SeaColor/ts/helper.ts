@@ -133,3 +133,103 @@ module SeaColor {
         }
     }
 }
+
+interface Date {
+    /**
+    * 时间格式化字符串
+    */
+    Format(fmt): string;
+    /**
+    * 添加天数
+    */
+    addDays(d: number): void;
+    /**
+    * 添加月数
+    */
+    addMonths(m: number): void;
+}
+Date.prototype.Format = function(fmt: string): string { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    }
+
+    return fmt;
+};
+Date.prototype.addDays = function(d: number): void {
+    this.setDate(this.getDate() + d);
+};
+Date.prototype.addMonths = function(m: number): void {
+    var d = this.getDate();
+    this.setMonth(this.getMonth() + m);
+    if (this.getDate() < d)
+        this.setDate(0);
+};
+
+interface String {
+    /**
+    * 获取字符串的真实长度(>127算2个字符长度)
+    */
+    getRealLenth(): number;
+    /**
+    * 裁剪字符串，中文按2个长度算
+    */
+    getTrimString(maxlen: number, repStr: string): string;
+}
+
+String.prototype.getRealLenth = function(): number {
+    var str = this,
+        rlen = this.length;
+    for (var i = 0, len = rlen; i < len; i++) {
+        if (str.charCodeAt(i) > 127)
+            rlen++;
+    }
+    return rlen;
+}
+String.prototype.getTrimString = function(maxlen: number, repStr: string): string {
+    maxlen = maxlen || this.getRealLenth();
+    repStr = repStr || "";
+    var rlen = this.getRealLenth(),
+        tarStrArr = [],
+        curlen = repStr.getRealLenth(),
+        curPos = 0;
+    if (rlen <= maxlen)
+        return this;
+    for (var len = this.length; curPos < len; curPos++) {
+        var curChar = this.charAt(curPos),
+            curCode = this.charCodeAt(curPos),
+            curCharLen = curCode > 127 ? 2 : 1;
+        if (curlen + curCharLen <= maxlen) {
+            tarStrArr.push(curChar);
+            curlen += curCharLen;
+        } else {
+            break;
+        }
+    }
+    tarStrArr.push(repStr);
+    return tarStrArr.join("");
+}
+
+
+interface Number {
+    /**
+     * 自动填充不够长度的数值
+     * @param length 长度
+     * @param char 填充的字符串
+     */
+    padLeft(length: number, char: string): string;
+}
+Number.prototype.padLeft = function(length: number, char: string = '0'): string {
+    return (Array(length).join(char || "0") + this).slice(-length);
+}
