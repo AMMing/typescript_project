@@ -70,7 +70,7 @@ module SeaColor {
                 this.JsMini('kaomoji');
             }
             if (now_url_path.indexOf('forum-') == 1) {//是论坛列表页才加载js
-                this.JsMini('forum');
+                this.JsMini('forum_x');
             }
             //需要经过配置的项
             this.JsMini('settings', () => {
@@ -89,7 +89,11 @@ module SeaColor {
 
 if (is_reload) {
     let append = new SeaColor.Append();
-    AMing.Core.Helper.append_js(`${append.debug_path}js/lib.min.js`, () => append.init(true));
+    AMing.Core.Helper.append_js(`${append.debug_path}js/lib/react.js`, () =>
+        AMing.Core.Helper.append_js(`${append.debug_path}js/lib/react-dom.js`, () =>
+            AMing.Core.Helper.append_js(`${append.debug_path}js/lib.min.js`, () => append.init(true))
+        )
+    );
 } else {
     $(() => (new SeaColor.Append()).init());
 }

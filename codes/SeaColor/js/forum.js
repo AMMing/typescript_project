@@ -75,7 +75,7 @@ var SeaColor;
                 ToArray();
         };
         return ForumData;
-    })();
+    }());
     SeaColor.ForumData = ForumData;
     var Forum = (function () {
         function Forum() {
@@ -128,7 +128,7 @@ var SeaColor;
             debugger;
         };
         return Forum;
-    })();
+    }());
     SeaColor.Forum = Forum;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Forum()).init();

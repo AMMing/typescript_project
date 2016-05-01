@@ -42,7 +42,7 @@ var SeaColor;
             this.initSetting();
         };
         return Settings;
-    })();
+    }());
     SeaColor.Settings = Settings;
 })(SeaColor || (SeaColor = {}));
 var seaColor_Settings = new SeaColor.Settings();

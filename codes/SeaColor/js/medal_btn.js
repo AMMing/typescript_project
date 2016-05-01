@@ -20,7 +20,7 @@ var SeaColor;
             this.createChangeButton();
         };
         return Medal_Global;
-    })();
+    }());
     SeaColor.Medal_Global = Medal_Global;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal_Global()).init();

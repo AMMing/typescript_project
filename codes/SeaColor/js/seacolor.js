@@ -74,7 +74,7 @@ var SeaColor;
                 this.JsMini('kaomoji');
             }
             if (now_url_path.indexOf('forum-') == 1) {
-                this.JsMini('forum');
+                this.JsMini('forum_x');
             }
             //需要经过配置的项
             this.JsMini('settings', function () {
@@ -88,12 +88,16 @@ var SeaColor;
             });
         };
         return Append;
-    })();
+    }());
     SeaColor.Append = Append;
 })(SeaColor || (SeaColor = {}));
 if (is_reload) {
-    var append = new SeaColor.Append();
-    AMing.Core.Helper.append_js(append.debug_path + "js/lib.min.js", function () { return append.init(true); });
+    var append_1 = new SeaColor.Append();
+    AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/react.js", function () {
+        return AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/react-dom.js", function () {
+            return AMing.Core.Helper.append_js(append_1.debug_path + "js/lib.min.js", function () { return append_1.init(true); });
+        });
+    });
 }
 else {
     $(function () { return (new SeaColor.Append()).init(); });

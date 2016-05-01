@@ -17,7 +17,8 @@
 
 .forum{
     width: 1200px;
-    margin: 10px auto;
+    margin: 10px auto;    
+    font-family:'Microsoft Yahei','Simsun';
     
     .topic_list{
         width: 1000px;
@@ -83,7 +84,24 @@
                     top: -25px;
                     left: -40px;
                     z-index: 9;
+                    z-index: 9;
+                    background-repeat: no-repeat;
+                    background-size: 120px;
+                    &.h{
+                        background-size: auto 120px;
+                    }
                 }
+                .username {
+                    position: absolute;
+                    z-index: 10;
+                    width: 120px;
+                    bottom: -100px;
+                    left: -40px;
+                    text-shadow: rgba(35, 102, 171, 0.6) 0 0 @text_shadow_val;
+                    color: #2F4D6F;
+                    text-align: center;
+                }
+                
             }
         }
     }
