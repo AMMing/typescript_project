@@ -1,0 +1,128 @@
+.forum_head {
+  width: 1098px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Microsoft Yahei', 'Simsun';
+}
+.forum_head * {
+  margin: 0;
+  padding: 0;
+}
+.forum_head > .bg {
+  width: 1098px;
+  height: 180px;
+  position: absolute;
+}
+.forum_head .text {
+  width: 1098px;
+  height: 100px;
+  position: absolute;
+  top: 40px;
+}
+.forum_head .text > .bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(32, 134, 195, 0.6);
+}
+.forum_head .text > .info {
+  position: absolute;
+  height: 100px;
+  width: 700px;
+  text-align: center;
+  margin-left: 40px;
+}
+.forum_head .text > .info > *:not(.clear) {
+  float: left;
+}
+.forum_head .text > .info * {
+  position: relative;
+}
+.forum_head .text > .info .left {
+  font-size: 44px;
+  color: #fff;
+  line-height: 100px;
+  width: 340px;
+}
+.forum_head .text > .info .line {
+  width: 2px;
+  height: 80px;
+  background: #fff;
+  margin-top: 10px;
+}
+.forum_head .text > .info .line.rotate {
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -moz-transform: rotate(90deg);
+  /* Firefox */
+  -webkit-transform: rotate(90deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(90deg);
+  /* Opera */
+  height: 200px;
+}
+.forum_head .text > .info .right {
+  color: #fff;
+  margin-top: 15px;
+  width: 350px;
+}
+.forum_head .text > .info .right h1 {
+  font-size: 36px;
+  margin: 0;
+  font-weight: normal;
+}
+.forum_head .text > .info .right a {
+  color: #fff;
+  text-decoration: none;
+}
+.forum_head .btn {
+  width: 220px;
+  height: 220px;
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+}
+.forum_head .btn img {
+  width: 100%;
+  height: 100%;
+}
+.forum_head .btn p {
+  position: absolute;
+  width: 100%;
+  font-size: 32px;
+  top: 40px;
+  left: 0;
+}
+.forum_head .btn i {
+  position: absolute;
+  width: 100%;
+  font-size: 66px;
+  bottom: 44px;
+  left: 0;
+  font-style: normal;
+}
+.forum_head .topics {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.clear {
+  clear: both;
+}
+.t9_1503100930n {
+  top: 10px;
+  width: 80px;
+  height: auto;
+}
+.t9_1503100930n img {
+  width: 80px;
+  height: auto;
+}
+.t9_1503100935 {
+  padding-left: 120px;
+}

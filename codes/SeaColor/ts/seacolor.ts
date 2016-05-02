@@ -69,8 +69,13 @@ module SeaColor {
             if (jQuery('#f_pst,#postbox').length > 0) {//包含输入框才加载颜文字js
                 this.JsMini('kaomoji');
             }
-            if (now_url_path.indexOf('forum-') == 1) {//是论坛列表页才加载js
-                this.JsMini('forum_x');
+            // if (now_url_path.indexOf('forum-') == 1) {//是论坛列表页才加载js
+            //     this.JsMini('forum_x');
+            // }
+
+            if (now_url_path.indexOf('forum-37-1.html') == 1) {
+                this.CssMini('forum_head');
+                this.JsMini('forum_head');
             }
             //需要经过配置的项
             this.JsMini('settings', () => {
@@ -89,8 +94,8 @@ module SeaColor {
 
 if (is_reload) {
     let append = new SeaColor.Append();
-    AMing.Core.Helper.append_js(`${append.debug_path}js/lib/react.js`, () =>
-        AMing.Core.Helper.append_js(`${append.debug_path}js/lib/react-dom.js`, () =>
+    AMing.Core.Helper.append_js(`${append.debug_path}js/lib/all/react.js`, () =>
+        AMing.Core.Helper.append_js(`${append.debug_path}js/lib/all/react-dom.js`, () =>
             AMing.Core.Helper.append_js(`${append.debug_path}js/lib.min.js`, () => append.init(true))
         )
     );

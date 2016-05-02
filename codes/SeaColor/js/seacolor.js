@@ -73,8 +73,12 @@ var SeaColor;
             if (jQuery('#f_pst,#postbox').length > 0) {
                 this.JsMini('kaomoji');
             }
-            if (now_url_path.indexOf('forum-') == 1) {
-                this.JsMini('forum_x');
+            // if (now_url_path.indexOf('forum-') == 1) {//是论坛列表页才加载js
+            //     this.JsMini('forum_x');
+            // }
+            if (now_url_path.indexOf('forum-37-1.html') == 1) {
+                this.CssMini('forum_head');
+                this.JsMini('forum_head');
             }
             //需要经过配置的项
             this.JsMini('settings', function () {
@@ -93,8 +97,8 @@ var SeaColor;
 })(SeaColor || (SeaColor = {}));
 if (is_reload) {
     var append_1 = new SeaColor.Append();
-    AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/react.js", function () {
-        return AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/react-dom.js", function () {
+    AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/all/react.js", function () {
+        return AMing.Core.Helper.append_js(append_1.debug_path + "js/lib/all/react-dom.js", function () {
             return AMing.Core.Helper.append_js(append_1.debug_path + "js/lib.min.js", function () { return append_1.init(true); });
         });
     });

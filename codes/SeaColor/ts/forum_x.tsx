@@ -133,7 +133,7 @@ module SeaColor.Discuss {
                         <div>{topic.des}</div>
                     </div>
                     <div className="right">
-                        <div className="user" >
+                        <div className="user">
                             <img src={this.default_img_url} data-src={this.data.getUserIcon_Middle(topic.host) } alt={topic.host.name} onLoad={this.imgLoad} />
                         </div>
                         <div className="username">{topic.host.name}</div>
