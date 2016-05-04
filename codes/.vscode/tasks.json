@@ -1,11 +1,16 @@
 {
     "version": "0.1.0",
-    "command": "tsc",
+    "command": "gulp",
     "isShellCommand": true,
-    "showOutput": "silent",
     "args": [
-        "-p",
-        "."
+        "--no-color"
     ],
-    "problemMatcher": "$tsc"
+    "tasks": [
+        {
+            "taskName": "all-task",
+            "args": [],
+            "isBuildCommand": true,
+            "isWatching": false
+        }
+    ]
 }

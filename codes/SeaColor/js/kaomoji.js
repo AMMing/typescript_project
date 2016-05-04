@@ -315,7 +315,7 @@ var SeaColor;
                 background: '#FF0',
                 top: '4px',
                 right: '5px',
-                cursor: 'pointer',
+                cursor: 'pointer'
             }).css({
                 background: 'url(http://kancolle.aemedia.org/./template/999test_cn_img/dz_model_15020401/common/cls.gif) no-repeat 0 0'
             });
