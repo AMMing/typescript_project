@@ -1,0 +1,18 @@
+{
+    "remotePath": "./",
+    "host": "tftp.amoe.me",
+    "username": "ftp_amoe",
+    "password": "ftp2443",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\node_modules",
+        "\\typings"
+    ]
+}

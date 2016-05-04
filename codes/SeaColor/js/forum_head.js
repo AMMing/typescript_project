@@ -54,21 +54,36 @@ var SeaColor;
             return Animate;
         }());
         Head.Animate = Animate;
+        var WriteContent = (function () {
+            function WriteContent() {
+            }
+            WriteContent.write = function (content) {
+                var img_url = 'http://ts.amoe.me/seacolor/';
+                ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", {className: "space"}), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实苏打上啊苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("div", {className: "bg show"}), React.createElement("div", {className: "bg"}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), content);
+            };
+            return WriteContent;
+        }());
+        Head.WriteContent = WriteContent;
+        var Helper = (function () {
+            function Helper() {
+            }
+            return Helper;
+        }());
+        Head.Helper = Helper;
     })(Head = SeaColor.Head || (SeaColor.Head = {}));
 })(SeaColor || (SeaColor = {}));
 var animate;
 function showAnimate() {
-    var img_url = 'http://ts.amoe.me/seacolor/';
-    ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", {className: "space"}), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实苏打上啊苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("div", {className: "bg show"}), React.createElement("div", {className: "bg"}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), document.getElementsByClassName('t9_1505190828')[0]);
-    animate = new SeaColor.Head.Animate(jQuery('.t9_1505190828'));
-    jQuery('#btn_forum_head_show').click(function (e) {
-        animate.showMenu();
-        jQuery('.topics li').each(function (i, x) {
-            // var $x= jQuery(x);
-            setTimeout(function () {
-                //  $x.animate({ left: 0 }, 800);
-                jQuery(x).addClass('show');
-            }, 200 * i + 200);
+    var $content = jQuery('.t9_1505190828');
+    $content.animate({ opacity: 0 }, 400, function () {
+        SeaColor.Head.WriteContent.write($content[0]);
+        animate = new SeaColor.Head.Animate($content);
+        $content.animate({ opacity: 1 }, 400);
+        jQuery('#btn_forum_head_show').click(function (e) {
+            animate.showMenu();
+            jQuery('.topics li').each(function (i, x) {
+                setTimeout(function () { return jQuery(x).addClass('show'); }, 200 * i + 200);
+            });
         });
     });
 }

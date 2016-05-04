@@ -8,7 +8,8 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     rename = require("gulp-rename"),
     ts = require("gulp-typescript"),
-    react = require("gulp-react");
+    sftp = require("gulp-sftp"),
+    config = require("./config.json");
 
 var paths = {
     webroot: "./SeaColor/"
@@ -85,6 +86,33 @@ gulp.task("min:js", ["build"], function () {
 
 //压缩全部
 gulp.task("min", ["min:js", "min:css"]);
+
+
+
+// gulp.task("upload:build",["min"],function() {
+//     return gulp.src([paths.js,paths.css])
+//         .pipe(sftp({
+            
+//         }));
+// });
+
+
+// gulp.task("upload:css",["build"],function() {
+//     return gulp.src([paths.css])
+//         .pipe(sftp({
+//             host: config.sftp.host,
+//             user: config.sftp.user,
+//             port: config.sftp.port,
+//             pass: config.sftp.pass,
+//             remotePath: config.sftp.remotePath+'css/'
+//         }));
+// });
+
+
+
+
+
+
 
 //执行全部任务
 gulp.task("all-task", ["clean", "build", "min"]);
