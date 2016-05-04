@@ -27,28 +27,29 @@ var SeaColor;
                 this.$text_right_h1 = this.$text_right.find('h1');
                 this.$text_right_a = this.$text_right.find('a');
             };
-            Animate.prototype.showMenu = function () {
-                this.$btn.animate({ right: 970 }, 800);
-                this.$text.animate({ top: 10, height: 160 }, 800);
+            Animate.prototype.showMenu = function (callback) {
+                var method = 'easeInOutQuad';
+                this.$btn.animate({ right: 970 }, 800, method);
+                this.$text.animate({ top: 10, height: 160 }, 800, method);
                 this.$text_left.animate({
                     fontSize: 18,
                     left: 100,
                     top: -26
-                }, 800);
+                }, 800, method);
                 this.$text_right.animate({
                     left: -350,
                     top: -10
-                }, 800);
+                }, 800, method);
                 this.$text_line.addClass('rotate').animate({
                     left: -134,
                     top: -70
-                }, 800);
-                this.$text_right_h1.animate({ fontSize: 24 }, 800);
+                }, 800, method);
+                this.$text_right_h1.animate({ fontSize: 24 }, 800, method);
                 this.$text_right_a.animate({
                     fontSize: 12,
                     left: 24,
                     top: 1
-                }, 800);
+                }, 800, method, callback);
             };
             return Animate;
         }());
@@ -58,10 +59,17 @@ var SeaColor;
 var animate;
 function showAnimate() {
     var img_url = 'http://ts.amoe.me/seacolor/';
-    ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, "攻略"), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"))))), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("div", {className: "bg show"}), React.createElement("div", {className: "bg"}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), document.getElementsByClassName('t9_1505190828')[0]);
+    ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", {className: "space"}), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实大上啊实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实打实大苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, React.createElement("img", {src: "http://kancolle.aemedia.org/uc_server/data/avatar/000/02/40/15_avatar_big.jpg", alt: ""})), React.createElement("span", null, "啊实打实苏打上啊苏打"), React.createElement("b", {className: "clear"}))), React.createElement("li", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("div", {className: "bg show"}), React.createElement("div", {className: "bg"}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), document.getElementsByClassName('t9_1505190828')[0]);
     animate = new SeaColor.Head.Animate(jQuery('.t9_1505190828'));
     jQuery('#btn_forum_head_show').click(function (e) {
         animate.showMenu();
+        jQuery('.topics li').each(function (i, x) {
+            // var $x= jQuery(x);
+            setTimeout(function () {
+                //  $x.animate({ left: 0 }, 800);
+                jQuery(x).addClass('show');
+            }, 200 * i + 200);
+        });
     });
 }
 showAnimate();
