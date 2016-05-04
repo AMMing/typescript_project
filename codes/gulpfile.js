@@ -1,4 +1,3 @@
-/// <binding Clean='clean' />
 "use strict";
 
 var gulp = require("gulp"),
@@ -89,3 +88,7 @@ gulp.task("min", ["min:js", "min:css"]);
 
 //执行全部任务
 gulp.task("all-task", ["clean", "build", "min"]);
+
+
+gulp.task("debug-task", ["clean", "build"]);
+

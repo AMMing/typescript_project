@@ -50,18 +50,18 @@
   height: 80px;
   background: #fff;
   margin-top: 10px;
+  transition: height, transform 0.8s;
+  -moz-transition: height, transform 0.8s;
+  -webkit-transition: height, transform 0.8s;
+  -o-transition: height, transform 0.8s;
 }
 .forum_head .text > .info .line.rotate {
+  height: 200px;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg);
-  /* IE 9 */
   -moz-transform: rotate(90deg);
-  /* Firefox */
   -webkit-transform: rotate(90deg);
-  /* Safari 和 Chrome */
   -o-transform: rotate(90deg);
-  /* Opera */
-  height: 200px;
 }
 .forum_head .text > .info .right {
   color: #fff;
@@ -78,14 +78,25 @@
   text-decoration: none;
 }
 .forum_head .btn {
-  width: 220px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   position: absolute;
-  top: -20px;
-  right: -10px;
+  top: 10px;
   cursor: pointer;
   text-align: center;
   color: #fff;
+  right: 20px;
+}
+.forum_head .btn > .bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(32, 134, 195, 0.6);
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
 .forum_head .btn img {
   width: 100%;
@@ -95,14 +106,14 @@
   position: absolute;
   width: 100%;
   font-size: 32px;
-  top: 40px;
+  top: 20px;
   left: 0;
 }
 .forum_head .btn i {
   position: absolute;
   width: 100%;
   font-size: 66px;
-  bottom: 44px;
+  bottom: 20px;
   left: 0;
   font-style: normal;
 }
@@ -118,11 +129,23 @@
   top: 10px;
   width: 80px;
   height: auto;
+  transition: 1s;
+  -moz-transition: 1s;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
 }
 .t9_1503100930n img {
-  width: 80px;
+  transition: 1s;
+  -moz-transition: 1s;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  width: 100%;
   height: auto;
 }
 .t9_1503100935 {
+  transition: 1s;
+  -moz-transition: 1s;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   padding-left: 120px;
 }

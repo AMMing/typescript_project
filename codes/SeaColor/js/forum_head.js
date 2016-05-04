@@ -28,7 +28,7 @@ var SeaColor;
                 this.$text_right_a = this.$text_right.find('a');
             };
             Animate.prototype.showMenu = function () {
-                this.$btn.animate({ right: 940 }, 800);
+                this.$btn.animate({ right: 970 }, 800);
                 this.$text.animate({ top: 10, height: 160 }, 800);
                 this.$text_left.animate({
                     fontSize: 18,
@@ -58,7 +58,7 @@ var SeaColor;
 var animate;
 function showAnimate() {
     var img_url = 'http://ts.amoe.me/seacolor/';
-    ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, "攻略"), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"))))), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("img", {src: img_url + "images/btn.png", alt: ""}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), document.getElementsByClassName('t9_1505190828')[0]);
+    ReactDOM.render((React.createElement("div", {className: "forum_head"}, React.createElement("img", {className: "bg", src: img_url + "images/h_bg.jpg", alt: ""}), React.createElement("div", {className: "topics"}, React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {href: "#"}, React.createElement("i", null, "攻略"), React.createElement("span", null, "啊实打实大苏打上啊实打实大苏打"))))), React.createElement("div", {className: "text"}, React.createElement("div", {className: "bg"}), React.createElement("div", {className: "info"}, React.createElement("div", {className: "left"}, "総力戰"), React.createElement("div", {className: "line"}), React.createElement("div", {className: "right"}, React.createElement("h1", null, "海色镇守府"), React.createElement("a", {href: "http://kancolle.aemedia.org/"}, "http://kancolle.aemedia.org/")), React.createElement("div", {className: "clear"}))), React.createElement("div", {className: "btn", id: "btn_forum_head_show"}, React.createElement("div", {className: "bg show"}), React.createElement("div", {className: "bg"}), React.createElement("p", null, "2016"), React.createElement("i", null, "春")))), document.getElementsByClassName('t9_1505190828')[0]);
     animate = new SeaColor.Head.Animate(jQuery('.t9_1505190828'));
     jQuery('#btn_forum_head_show').click(function (e) {
         animate.showMenu();

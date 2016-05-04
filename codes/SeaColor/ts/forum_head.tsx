@@ -35,7 +35,7 @@ module SeaColor.Head {
             this.$text_right_a = this.$text_right.find('a');
         }
         showMenu(): void {
-            this.$btn.animate({ right: 940 }, 800);
+            this.$btn.animate({ right: 970 }, 800);
 
             this.$text.animate({ top: 10, height: 160 }, 800);
 
@@ -98,7 +98,8 @@ function showAnimate(){
             </div>
         </div>
         <div className="btn" id="btn_forum_head_show">
-            <img src={`${img_url}images/btn.png`} alt="" />
+            <div className="bg show"></div>
+            <div className="bg"></div>
             <p>2016</p>
             <i>春</i>
         </div>
