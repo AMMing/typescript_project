@@ -135,3 +135,5 @@ var SeaColor;
     })(Discuss = SeaColor.Discuss || (SeaColor.Discuss = {}));
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Discuss.Render()).init();
+
+//# sourceMappingURL=../maps/forum_x.js.map

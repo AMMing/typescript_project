@@ -24,3 +24,5 @@ var SeaColor;
     SeaColor.Medal_Global = Medal_Global;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal_Global()).init();
+
+//# sourceMappingURL=../maps/medal_btn.js.map

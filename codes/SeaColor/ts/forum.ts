@@ -122,17 +122,17 @@ module SeaColor {
                         append(Helper.createImage(this.data.getUserIcon_Middle(topic.host))).
                         append(Helper.createElement('div').text(topic.host.name))
                     )
-                    // .
-                    // append(Helper.createElement('div', 'info').//信息
-                    //     append(Helper.createElement('div', 'count').//查看数
-                    //         append(Helper.createElement('p', 'view').text(topic.view_count)).
-                    //         append(Helper.createElement('p', 'comment').text(topic.comment_count))
-                    //     ).
-                    //     append(Helper.createElement('div', 'date').//时间
-                    //         append(Helper.createElement('p').text(topic.date)).
-                    //         append(Helper.createElement('p').text(topic.date_text))
-                    //     )
-                    // )
+                // .
+                // append(Helper.createElement('div', 'info').//信息
+                //     append(Helper.createElement('div', 'count').//查看数
+                //         append(Helper.createElement('p', 'view').text(topic.view_count)).
+                //         append(Helper.createElement('p', 'comment').text(topic.comment_count))
+                //     ).
+                //     append(Helper.createElement('div', 'date').//时间
+                //         append(Helper.createElement('p').text(topic.date)).
+                //         append(Helper.createElement('p').text(topic.date_text))
+                //     )
+                // )
                 ).
                 append(Helper.createElement('div', 'clear'));
         }

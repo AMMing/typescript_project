@@ -1,0 +1,10 @@
+[
+    {
+        "outFile": "forum_head",
+        "isPath": false,
+        "files": [
+            "forum_head.react",
+            "forum_head.code"
+        ]
+    }
+]

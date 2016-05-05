@@ -106,3 +106,5 @@ if (is_reload) {
 else {
     $(function () { return (new SeaColor.Append()).init(); });
 }
+
+//# sourceMappingURL=../maps/seacolor.js.map

@@ -8,8 +8,8 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     rename = require("gulp-rename"),
     ts = require("gulp-typescript"),
-    sftp = require("gulp-sftp"),
-    config = require("./config.json");
+    sourcemaps = require("gulp-sourcemaps"),
+    mergejs = require("./mergejs.json");
 
 var paths = {
     webroot: "./SeaColor/"
@@ -19,20 +19,33 @@ paths.js = paths.webroot + "js/*.js";
 paths.minJs = paths.webroot + "js/*.min.js";
 paths.css = paths.webroot + "css/*.css";
 paths.minCss = paths.webroot + "css/*.min.css";
+paths.map = paths.webroot + "maps/*.map";
 
-paths.less = paths.webroot + 'less/*.less';
-paths.ts = paths.webroot + 'ts/*.{ts,tsx}';
-paths.cssDir = paths.webroot + 'css/';
-paths.jsDir = paths.webroot + 'js/';
+paths.less = paths.webroot + "less/*.less";
+paths.ts = paths.webroot + "ts/*.{ts,tsx}";
+paths.cssDir = paths.webroot + "css/";
+paths.jsDir = paths.webroot + "js/";
+paths.mapDir = "../maps";
 
 
-paths.jsLibsCore = paths.webroot + 'js/lib/core/*.js';
-paths.jsLibs = paths.webroot + 'js/lib/*.js';
-paths.jsLibName = 'lib.js';
+paths.jsLibsCore = paths.webroot + "js/lib/core/*.js";
+paths.jsLibs = paths.webroot + "js/lib/*.js";
+paths.jsLibName = "lib.js";
+
+var sourcemapsConfig = {
+    includeContent: false,
+    loadMaps: true
+};
+
+
+//拼接js文件路径
+function getJsPath(name) {
+    return paths.webroot + "js/" + name + ".js";
+}
 
 //清理css文件
 gulp.task("clean:css", function (cb) {
-    return gulp.src(paths.minCss, { read: false })
+    return gulp.src(paths.css, { read: false })
         .pipe(clean());
 });
 //清理js文件
@@ -40,23 +53,31 @@ gulp.task("clean:js", function (cb) {
     return gulp.src(paths.js, { read: false })
         .pipe(clean());
 });
+//清理map文件
+gulp.task("clean:map", function (cb) {
+    return gulp.src(paths.map, { read: false })
+        .pipe(clean());
+});
 
 //清理全部
-gulp.task("clean", ["clean:js", "clean:css"]);
+gulp.task("clean", ["clean:js", "clean:css", "clean:map"]);
 
 //编译less
 gulp.task("build:less", ["clean"], function () {
     return gulp.src(paths.less)
+        .pipe(sourcemaps.init())
         .pipe(less({ comoress: true }))
-        .on('error', function (e) { console.log(e); })
+        .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
         .pipe(gulp.dest(paths.cssDir));
 });
 //编译ts
 gulp.task("build:ts", ["clean"], function () {
     return gulp.src(paths.ts)
+        .pipe(sourcemaps.init())
         .pipe(ts({
-            jsx: 'react'
+            jsx: "react"
         }))
+        .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
         .pipe(gulp.dest(paths.jsDir));
 });
 //合并lib库
@@ -66,57 +87,67 @@ gulp.task("build:lib", ["clean"], function () {
         .pipe(gulp.dest(paths.jsDir));
 });
 
+//创建合并js文件的方法
+function createMerge(config) {
+    if (!config || !config.outFile || !config.files || config.files.length == 0) {
+        return null;
+    }
+    var srcs = [];
+    config.files.forEach(function (x) {
+        srcs.push(config.isPath ? x : getJsPath(x));
+    });
+    var taskname = "build:merge-" + config.outFile;
+    gulp.task(taskname, ["build:ts"], function () {
+        return gulp.src(srcs)
+            .pipe(concat(config.outFile + ".js"))
+            .pipe(gulp.dest(paths.jsDir));
+    });
+    console.log({
+        taskname: taskname,
+        src: srcs,
+        config: config
+    });
+
+    return taskname;
+}
+
+var bulid_task = ["build:less", "build:ts", "build:lib"];
+
+//合并
+mergejs.forEach(function (x) {
+    var taskname = createMerge(x);
+    if (!!taskname) {
+        bulid_task.push(taskname);
+    }
+});
+
 //编译全部
-gulp.task("build", ["build:less", "build:ts", "build:lib"]);
+gulp.task("build", bulid_task);
 
 //压缩css
 gulp.task("min:css", ["build"], function () {
     return gulp.src([paths.css, "!" + paths.minCss])
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(sourcemaps.init())
+        .pipe(rename({ suffix: ".min" }))
         .pipe(cssmin())
+        .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
         .pipe(gulp.dest(paths.cssDir));
 });
 //压缩js
 gulp.task("min:js", ["build"], function () {
-    return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-        .pipe(rename({ suffix: '.min' }))
+    return gulp.src([paths.js, "!" + paths.minJs])
+        .pipe(sourcemaps.init())
+        .pipe(rename({ suffix: ".min" }))
         .pipe(uglify())
-        .pipe(gulp.dest("."));
+        .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
+        .pipe(gulp.dest(paths.jsDir));
 });
 
 //压缩全部
 gulp.task("min", ["min:js", "min:css"]);
 
-
-
-// gulp.task("upload:build",["min"],function() {
-//     return gulp.src([paths.js,paths.css])
-//         .pipe(sftp({
-            
-//         }));
-// });
-
-
-// gulp.task("upload:css",["build"],function() {
-//     return gulp.src([paths.css])
-//         .pipe(sftp({
-//             host: config.sftp.host,
-//             user: config.sftp.user,
-//             port: config.sftp.port,
-//             pass: config.sftp.pass,
-//             remotePath: config.sftp.remotePath+'css/'
-//         }));
-// });
-
-
-
-
-
-
-
 //执行全部任务
 gulp.task("all-task", ["clean", "build", "min"]);
 
-
+//执行debug任务
 gulp.task("debug-task", ["clean", "build"]);
-

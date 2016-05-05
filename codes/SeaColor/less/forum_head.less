@@ -1,5 +1,19 @@
 // out: ../css/forum_head.css
-
+//过渡效果
+.transition(@val){
+    transition:@val;
+    -moz-transition:@val;
+    -webkit-transition:@val;
+    -o-transition:@val;
+}
+//变换效果
+.transform(@val){
+    transform:@val;
+    -moz-transform:@val;
+    -webkit-transform:@val;
+    -o-transform:@val;
+}
+//旋转
 .rotate(@deg){
     @val:@deg * 1deg;
     transform:rotate(@val);
@@ -8,18 +22,14 @@
     -webkit-transform:rotate(@val);
     -o-transform:rotate(@val);
 }
-.transition(@val){
-    transition:@val;
-    -moz-transition:@val;
-    -webkit-transition:@val;
-    -o-transition:@val;
-}
+//缩放
 .scale(@val){
     transform:scale(@val);
     -moz-transform:scale(@val);
     -webkit-transform:scale(@val);
     -o-transform:scale(@val);
 }
+//X轴位移
 .translateX(@val){
     transform:translateX(@val);
     -moz-transform:translateX(@val);

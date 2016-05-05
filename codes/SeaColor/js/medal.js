@@ -233,3 +233,5 @@ var SeaColor;
     SeaColor.Medal = Medal;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Medal()).init();
+
+//# sourceMappingURL=../maps/medal.js.map
