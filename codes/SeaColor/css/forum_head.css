@@ -5,6 +5,26 @@
   overflow: hidden;
   font-family: 'Microsoft Yahei', 'Simsun';
 }
+.forum_head .bg.waveform {
+  transform: rotate(45deg) scale(1);
+  -ms-transform: rotate(45deg) scale(1);
+  -moz-transform: rotate(45deg) scale(1);
+  -webkit-transform: rotate(45deg) scale(1);
+  -o-transform: rotate(45deg) scale(1);
+  opacity: 1;
+  transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -webkit-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+}
+.forum_head .bg.waveform.show {
+  transform: rotate(45deg) scale(1.5);
+  -ms-transform: rotate(45deg) scale(1.5);
+  -moz-transform: rotate(45deg) scale(1.5);
+  -webkit-transform: rotate(45deg) scale(1.5);
+  -o-transform: rotate(45deg) scale(1.5);
+  opacity: 0;
+}
 .forum_head * {
   margin: 0;
   padding: 0;

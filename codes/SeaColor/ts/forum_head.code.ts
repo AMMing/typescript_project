@@ -111,14 +111,15 @@ module SeaColor.Head {
 
         waveForm($item: JQuery): void {
             var $bg = $item.find('.bg.waveform');
-            var s = 1.5,
-                w = $bg.width(),
-                h = $bg.height();
-            $bg.animate({
-                width: w * s,
-                height: h * s,
-                opacity: 0
-            }, 2000);
+            // var s = 1.5,
+            //     w = $bg.width(),
+            //     h = $bg.height();
+            // $bg.animate({
+            //     width: w * s,
+            //     height: h * s,
+            //     opacity: 0
+            // }, 2000);
+            $bg.addClass('show');
         }
     }
     export interface TopicItem {
@@ -141,8 +142,8 @@ function showAnimate() {
         $content.animate({ opacity: 1 }, 400);
 
         jQuery('#btn_forum_head_show').click(e => {
-            // animate.showMenu();
             animate.waveForm(animate.$btn);
+            setTimeout(() => animate.showMenu(), 800);
         });
     });
 }
