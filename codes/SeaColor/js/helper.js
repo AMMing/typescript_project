@@ -219,5 +219,3 @@ Number.prototype.padLeft = function (length, char) {
     if (char === void 0) { char = '0'; }
     return (Array(length).join(char || "0") + this).slice(-length);
 };
-
-//# sourceMappingURL=../maps/helper.js.map

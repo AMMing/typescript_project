@@ -33,7 +33,7 @@ paths.jsLibs = paths.webroot + "js/lib/*.js";
 paths.jsLibName = "lib.js";
 
 var sourcemapsConfig = {
-    includeContent: false,
+    // includeContent: false,
     loadMaps: true
 };
 
@@ -73,11 +73,11 @@ gulp.task("build:less", ["clean"], function () {
 //编译ts
 gulp.task("build:ts", ["clean"], function () {
     return gulp.src(paths.ts)
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(ts({
             jsx: "react"
         }))
-        .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
+        // .pipe(sourcemaps.write(paths.mapDir, sourcemapsConfig))
         .pipe(gulp.dest(paths.jsDir));
 });
 //合并lib库

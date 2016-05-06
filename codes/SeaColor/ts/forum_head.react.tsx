@@ -48,7 +48,7 @@ module SeaColor.Head {
                 </div>
                 <div className="btn" id="btn_forum_head_show">
                     <div className="bg waveform"></div>
-                    <div className="bg"></div>
+                    <div className="bg show"></div>
                     <p>2016</p>
                     <i>春</i>
                 </div>

@@ -132,5 +132,3 @@ var SeaColor;
     SeaColor.Forum = Forum;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Forum()).init();
-
-//# sourceMappingURL=../maps/forum.js.map

@@ -395,5 +395,3 @@ var SeaColor;
     SeaColor.Kaomoji = Kaomoji;
 })(SeaColor || (SeaColor = {}));
 (new SeaColor.Kaomoji()).init();
-
-//# sourceMappingURL=../maps/kaomoji.js.map

@@ -1,2 +1,106 @@
+@keyframes waveform {
+  0% {
+    transform: rotate(45deg) scale(1);
+    -ms-transform: rotate(45deg) scale(1);
+    -moz-transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(1);
+    -o-transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+}
+@-moz-keyframes waveform {
+  0% {
+    transform: rotate(45deg) scale(1);
+    -ms-transform: rotate(45deg) scale(1);
+    -moz-transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(1);
+    -o-transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes waveform {
+  0% {
+    transform: rotate(45deg) scale(1);
+    -ms-transform: rotate(45deg) scale(1);
+    -moz-transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(1);
+    -o-transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+}
+@-o-keyframes waveform {
+  0% {
+    transform: rotate(45deg) scale(1);
+    -ms-transform: rotate(45deg) scale(1);
+    -moz-transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(1);
+    -o-transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+}
 
 /*# sourceMappingURL=../maps/forum_head.animation.css.map */
