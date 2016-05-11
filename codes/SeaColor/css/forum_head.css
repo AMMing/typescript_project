@@ -161,6 +161,11 @@
   height: 80px;
   background: #fff;
   margin-top: 10px;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
   transition: height, transform 0.8s;
   -moz-transition: height, transform 0.8s;
   -webkit-transition: height, transform 0.8s;

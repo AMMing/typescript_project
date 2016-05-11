@@ -109,6 +109,7 @@
                 background: #fff;
                 margin-top: 10px;
                 @val: height, transform 0.8s;
+                .rotate(0);
                 .transition(@val);
                 &.rotate {
                     height: 200px;
@@ -215,7 +216,6 @@
                         list-style: none;
                         position: relative;
                         .transition(border 0.4s);
-                        
                         img {
                             .rotate(-45);
                             width: 70px;
@@ -246,7 +246,6 @@
                         line-height: 18px;
                         font-size: 16px;
                         .transition(border 0.4s);
-                        
                     }
                     b {
                         clear: both;
